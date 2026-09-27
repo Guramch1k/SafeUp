@@ -2,81 +2,1221 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>SAFEUP — Crash Game Demo</title>
+
 <style>
-*{box-sizing:border-box}body{margin:0;background:#07090c;color:#eef3f7;font-family:Inter,Arial,sans-serif}
-.wrap{max-width:1180px;margin:auto;padding:22px}
-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:20px}
-.logo{font-weight:900;font-size:28px;letter-spacing:3px}.logo span{color:#ffd35a}
-.badge{font-size:11px;letter-spacing:1.5px;color:#8fa0ae;border:1px solid #26313a;border-radius:999px;padding:8px 12px}
-.grid{display:grid;grid-template-columns:1fr 330px;gap:18px}
-.card{background:linear-gradient(145deg,#10151a,#0b0e12);border:1px solid #202a32;border-radius:20px;box-shadow:0 18px 50px #0008}
-.main{padding:26px;min-height:650px}.side{padding:20px}
-.kicker{color:#82909b;font-size:11px;letter-spacing:2px}.round{float:right;color:#65737e;font-size:12px}
-.vault{height:390px;display:grid;place-items:center;position:relative;overflow:hidden}
-.vault:before{content:"";position:absolute;width:290px;height:290px;border:1px dashed #1d3945;border-radius:50%;animation:spin 18s linear infinite}
-.vault:after{content:"";position:absolute;width:220px;height:220px;border:2px solid #ffd35a33;border-radius:50%;box-shadow:0 0 70px #00e5ff18 inset}
-@keyframes spin{to{transform:rotate(360deg)}}
-.core{position:relative;z-index:2;text-align:center}.mult{font-size:76px;font-weight:900;letter-spacing:-4px;text-shadow:0 0 30px #00e5ff44}.status{font-size:11px;letter-spacing:2px;color:#7d8d99;margin-top:8px}
-.controls{display:grid;grid-template-columns:1fr 1fr;gap:12px}.field{background:#0a0d10;border:1px solid #202b33;border-radius:12px;padding:12px}.field label{display:block;font-size:10px;color:#71808b;letter-spacing:1.2px;margin-bottom:7px}
-input{width:100%;background:transparent;border:0;outline:0;color:white;font-size:17px}
-.presets{display:flex;gap:7px;margin-top:8px}.presets button,.risk button{flex:1;background:#11171c;color:#9ba8b1;border:1px solid #253039;border-radius:9px;padding:8px;cursor:pointer}
-.risk{display:flex;gap:7px}.risk button.active{border-color:#ffd35a;color:#ffd35a}
-.action{width:100%;margin-top:14px;border:0;border-radius:12px;padding:16px;font-weight:900;letter-spacing:1.5px;cursor:pointer;background:linear-gradient(90deg,#00d9ff,#ffd35a);color:#071014}
-.stats{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:14px}.stat{padding:13px;border:1px solid #202a32;border-radius:12px;background:#0b0f13}.stat small{display:block;color:#697783;font-size:10px;margin-bottom:5px}.stat b{font-size:16px}
-.feed{margin-top:18px}.feed h3{font-size:11px;letter-spacing:1.7px;color:#7e8d98}.log{font-size:12px;color:#8d9aa3;line-height:1.9;max-height:110px;overflow:auto}
-.notice{margin-top:16px;font-size:10px;line-height:1.5;color:#66747e;text-align:center}
-@media(max-width:800px){.grid{grid-template-columns:1fr}.main{min-height:auto}.vault{height:330px}.mult{font-size:62px}}
+*{box-sizing:border-box}
+
+:root{
+  --bg:#05070a;
+  --card:#0c1116;
+  --card2:#10171d;
+  --line:#202b33;
+  --text:#eef4f7;
+  --muted:#73818c;
+  --cyan:#00d9ff;
+  --gold:#ffd35a;
+  --red:#ff5364;
+  --green:#55e6a5;
+}
+
+html,body{
+  margin:0;
+  min-height:100%;
+  background:
+    radial-gradient(circle at 50% -10%,#10242c 0,#05070a 42%);
+  color:var(--text);
+  font-family:Inter,Arial,sans-serif;
+}
+
+body{
+  padding-bottom:30px;
+}
+
+button,input{
+  font:inherit;
+}
+
+button{
+  -webkit-tap-highlight-color:transparent;
+}
+
+.wrap{
+  max-width:1200px;
+  margin:auto;
+  padding:20px;
+}
+
+header{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin-bottom:18px;
+}
+
+.logo{
+  font-weight:950;
+  font-size:29px;
+  letter-spacing:4px;
+}
+
+.logo span{
+  color:var(--gold);
+}
+
+.badge{
+  font-size:10px;
+  letter-spacing:1.4px;
+  color:#8998a3;
+  border:1px solid #26333b;
+  border-radius:999px;
+  padding:8px 12px;
+  background:#090d11;
+}
+
+.grid{
+  display:grid;
+  grid-template-columns:minmax(0,1fr) 330px;
+  gap:18px;
+}
+
+.card{
+  background:
+    linear-gradient(145deg,rgba(18,25,31,.98),rgba(8,11,15,.98));
+  border:1px solid var(--line);
+  border-radius:22px;
+  box-shadow:0 25px 70px #000b;
+}
+
+.main{
+  padding:25px;
+}
+
+.side{
+  padding:20px;
+  height:max-content;
+}
+
+.topline{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+}
+
+.kicker{
+  color:#81909b;
+  font-size:10px;
+  letter-spacing:2px;
+  font-weight:700;
+}
+
+.round{
+  color:#61717c;
+  font-size:11px;
+}
+
+.game{
+  position:relative;
+  height:430px;
+  margin-top:12px;
+  overflow:hidden;
+  border-radius:18px;
+  border:1px solid #18242c;
+  background:
+    radial-gradient(circle at 50% 52%,#09212a 0,#071015 32%,#06090c 70%);
+}
+
+.gridlines{
+  position:absolute;
+  inset:0;
+  opacity:.42;
+  background-image:
+    linear-gradient(#18303a 1px,transparent 1px),
+    linear-gradient(90deg,#18303a 1px,transparent 1px);
+  background-size:50px 50px;
+  mask-image:linear-gradient(to bottom,transparent,#000 15%,#000 90%,transparent);
+}
+
+.rings{
+  position:absolute;
+  left:50%;
+  top:51%;
+  width:270px;
+  height:270px;
+  transform:translate(-50%,-50%);
+  border:1px dashed #1d4a56;
+  border-radius:50%;
+  animation:spin 18s linear infinite;
+}
+
+.rings:before,
+.rings:after{
+  content:"";
+  position:absolute;
+  left:50%;
+  top:50%;
+  transform:translate(-50%,-50%);
+  border-radius:50%;
+}
+
+.rings:before{
+  width:210px;
+  height:210px;
+  border:1px solid #ffd35a2b;
+  box-shadow:0 0 60px #00d9ff18 inset;
+}
+
+.rings:after{
+  width:140px;
+  height:140px;
+  border:1px solid #00d9ff20;
+}
+
+@keyframes spin{
+  to{transform:translate(-50%,-50%) rotate(360deg)}
+}
+
+.core{
+  position:absolute;
+  z-index:4;
+  inset:0;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  pointer-events:none;
+}
+
+.mult{
+  font-size:78px;
+  line-height:1;
+  font-weight:950;
+  letter-spacing:-5px;
+  text-shadow:
+    0 0 25px #00d9ff55,
+    0 0 70px #00d9ff18;
+  transition:color .15s;
+}
+
+.mult.crashed{
+  color:var(--red);
+  text-shadow:0 0 35px #ff536455;
+}
+
+.status{
+  margin-top:12px;
+  font-size:10px;
+  letter-spacing:2.4px;
+  color:#7d8d98;
+}
+
+.crashMessage{
+  position:absolute;
+  z-index:5;
+  inset:0;
+  display:grid;
+  place-items:center;
+  opacity:0;
+  pointer-events:none;
+  transition:.25s;
+}
+
+.crashMessage.show{
+  opacity:1;
+}
+
+.crashMessage div{
+  padding:13px 20px;
+  border:1px solid #ff536455;
+  border-radius:999px;
+  color:#ff7b88;
+  background:#170a0eaa;
+  box-shadow:0 0 50px #ff536420;
+  font-size:11px;
+  font-weight:800;
+  letter-spacing:2px;
+}
+
+canvas{
+  position:absolute;
+  inset:0;
+  width:100%;
+  height:100%;
+  z-index:3;
+}
+
+.controls{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:12px;
+  margin-top:14px;
+}
+
+.field{
+  background:#090d11;
+  border:1px solid #202b33;
+  border-radius:13px;
+  padding:12px;
+}
+
+.field label{
+  display:block;
+  font-size:9px;
+  color:#71808b;
+  letter-spacing:1.5px;
+  margin-bottom:7px;
+}
+
+input{
+  width:100%;
+  background:transparent;
+  border:0;
+  outline:0;
+  color:white;
+  font-size:18px;
+  font-weight:700;
+}
+
+input:disabled{
+  opacity:.45;
+}
+
+.presets{
+  display:flex;
+  gap:6px;
+  margin-top:9px;
+}
+
+.presets button,
+.risk button{
+  flex:1;
+  border:1px solid #253039;
+  border-radius:9px;
+  padding:8px 4px;
+  cursor:pointer;
+  color:#9caab3;
+  background:#11171c;
+  transition:.15s;
+}
+
+.presets button:hover,
+.risk button:hover{
+  border-color:#40515c;
+  color:#fff;
+}
+
+.riskWrap{
+  margin-top:13px;
+}
+
+.risk{
+  display:flex;
+  gap:7px;
+  margin-top:8px;
+}
+
+.risk button.active{
+  border-color:var(--gold);
+  color:var(--gold);
+  background:#19160d;
+}
+
+.action{
+  width:100%;
+  margin-top:14px;
+  border:0;
+  border-radius:13px;
+  padding:17px;
+  font-weight:950;
+  letter-spacing:1.7px;
+  cursor:pointer;
+  color:#071014;
+  background:linear-gradient(90deg,var(--cyan),var(--gold));
+  box-shadow:0 8px 35px #00d9ff1c;
+  transition:.18s;
+}
+
+.action:hover{
+  transform:translateY(-1px);
+  filter:brightness(1.08);
+}
+
+.action.cashout{
+  background:linear-gradient(90deg,#55e6a5,#00d9ff);
+}
+
+.action:disabled{
+  opacity:.5;
+  cursor:not-allowed;
+}
+
+.stats{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:10px;
+  margin-top:14px;
+}
+
+.stat{
+  padding:13px;
+  border:1px solid #202a32;
+  border-radius:12px;
+  background:#0a0f13;
+}
+
+.stat small{
+  display:block;
+  color:#697783;
+  font-size:9px;
+  letter-spacing:1px;
+  margin-bottom:5px;
+}
+
+.stat b{
+  font-size:16px;
+}
+
+.performance{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:10px;
+  margin-top:10px;
+}
+
+.performance .stat b{
+  font-size:14px;
+}
+
+.feed{
+  margin-top:18px;
+}
+
+.feed h3{
+  font-size:10px;
+  letter-spacing:1.7px;
+  color:#7e8d98;
+}
+
+.log{
+  font-size:11px;
+  color:#8997a0;
+  line-height:1.9;
+  max-height:120px;
+  overflow:auto;
+  border:1px solid #182128;
+  border-radius:12px;
+  padding:8px 12px;
+  background:#080c10;
+}
+
+.log div{
+  border-bottom:1px solid #12191e;
+}
+
+.log div:last-child{
+  border-bottom:0;
+}
+
+.notice{
+  margin-top:15px;
+  font-size:9px;
+  line-height:1.6;
+  color:#64727c;
+  text-align:center;
+}
+
+.side h2{
+  margin:10px 0 6px;
+  font-size:21px;
+}
+
+.side p{
+  color:#7d8b95;
+  font-size:12px;
+  line-height:1.65;
+}
+
+hr{
+  border:0;
+  border-top:1px solid #202a32;
+  margin:20px 0;
+}
+
+.sideStats{
+  margin-top:10px;
+}
+
+.clear{
+  width:100%;
+  margin-top:12px;
+  padding:10px;
+  border-radius:10px;
+  background:#0b1014;
+  color:#75838c;
+  border:1px solid #202a32;
+  cursor:pointer;
+  font-size:10px;
+  letter-spacing:1px;
+}
+
+.clear:hover{
+  color:#fff;
+  border-color:#394852;
+}
+
+@media(max-width:800px){
+
+  .wrap{
+    padding:12px;
+  }
+
+  header{
+    margin-bottom:12px;
+  }
+
+  .logo{
+    font-size:24px;
+  }
+
+  .badge{
+    font-size:8px;
+    padding:7px 9px;
+  }
+
+  .grid{
+    grid-template-columns:1fr;
+  }
+
+  .main{
+    padding:14px;
+  }
+
+  .side{
+    padding:16px;
+  }
+
+  .game{
+    height:350px;
+  }
+
+  .mult{
+    font-size:61px;
+  }
+
+  .rings{
+    width:220px;
+    height:220px;
+  }
+
+  .controls{
+    grid-template-columns:1fr;
+  }
+
+  .performance{
+    grid-template-columns:repeat(3,1fr);
+  }
+
+  .performance .stat{
+    padding:10px 8px;
+  }
+
+  .performance .stat b{
+    font-size:12px;
+  }
+}
+
+@media(max-width:420px){
+
+  .game{
+    height:315px;
+  }
+
+  .mult{
+    font-size:54px;
+  }
+
+  .presets button{
+    font-size:12px;
+  }
+
+  .risk button{
+    font-size:11px;
+  }
+}
 </style>
 </head>
+
 <body>
+
 <div class="wrap">
-<header><div class="logo">SAFE<span>UP</span></div><div class="badge">DEMO • NO REAL MONEY</div></header>
+
+<header>
+  <div class="logo">SAFE<span>UP</span></div>
+  <div class="badge">DEMO • NO REAL MONEY</div>
+</header>
+
 <div class="grid">
+
 <section class="card main">
-<div><span class="kicker">VAULT PROTOCOL 01</span><span class="round" id="round">ROUND #001</span></div>
-<div class="vault"><div class="core"><div class="mult" id="mult">1.00×</div><div class="status" id="status">READY TO START</div></div></div>
-<div class="controls">
-<div class="field"><label>STAKE</label><input id="stake" type="number" min="1" value="10"><div class="presets">
-<button onclick="setStake(1)">$1</button><button onclick="setStake(5)">$5</button><button onclick="setStake(10)">$10</button><button onclick="setStake(25)">$25</button><button onclick="setStake(50)">$50</button></div></div>
-<div class="field"><label>AUTO CASH OUT</label><input id="auto" type="number" step=".01" min="1.01" value="2.00"></div>
-</div>
-<div style="margin-top:12px"><div class="kicker" style="margin-bottom:8px">RISK LEVEL</div><div class="risk">
-<button class="active" data-risk="safe">SAFE</button><button data-risk="risk">RISK</button><button data-risk="extreme">EXTREME</button>
-</div></div>
-<button class="action" id="action">START ROUND</button>
-<div class="stats"><div class="stat"><small>DEMO BALANCE</small><b id="balance">$1,000.00</b></div><div class="stat"><small>LAST MULTIPLIER</small><b id="last">—</b></div></div>
-<div class="feed"><h3>LIVE VAULT FEED</h3><div class="log" id="log"></div></div>
-<div class="notice">Prototype only. Virtual demo credits have no monetary value. No payments, wallets or real-money wagering are implemented.</div>
+
+  <div class="topline">
+    <span class="kicker">VAULT PROTOCOL 02</span>
+    <span class="round" id="round">ROUND #001</span>
+  </div>
+
+  <div class="game" id="game">
+
+    <div class="gridlines"></div>
+    <div class="rings"></div>
+    <canvas id="chart"></canvas>
+
+    <div class="core">
+      <div class="mult" id="mult">1.00×</div>
+      <div class="status" id="status">READY TO START</div>
+    </div>
+
+    <div class="crashMessage" id="crashMessage">
+      <div id="crashText">VAULT LOCKED</div>
+    </div>
+
+  </div>
+
+  <div class="controls">
+
+    <div class="field">
+      <label>STAKE</label>
+
+      <input
+        id="stake"
+        type="number"
+        min="1"
+        step="1"
+        value="10"
+      >
+
+      <div class="presets">
+        <button onclick="setStake(1)">$1</button>
+        <button onclick="setStake(5)">$5</button>
+        <button onclick="setStake(10)">$10</button>
+        <button onclick="setStake(25)">$25</button>
+        <button onclick="setStake(50)">$50</button>
+      </div>
+    </div>
+
+    <div class="field">
+      <label>AUTO CASH OUT</label>
+
+      <input
+        id="auto"
+        type="number"
+        step=".01"
+        min="1.01"
+        value="2.00"
+      >
+    </div>
+
+  </div>
+
+  <div class="riskWrap">
+
+    <div class="kicker">RISK LEVEL</div>
+
+    <div class="risk">
+
+      <button class="active" data-risk="safe">
+        SAFE
+      </button>
+
+      <button data-risk="risk">
+        RISK
+      </button>
+
+      <button data-risk="extreme">
+        EXTREME
+      </button>
+
+    </div>
+
+  </div>
+
+  <button class="action" id="action">
+    START ROUND
+  </button>
+
+  <div class="stats">
+
+    <div class="stat">
+      <small>DEMO BALANCE</small>
+      <b id="balance">$1,000.00</b>
+    </div>
+
+    <div class="stat">
+      <small>LAST MULTIPLIER</small>
+      <b id="last">—</b>
+    </div>
+
+  </div>
+
+  <div class="performance">
+
+    <div class="stat">
+      <small>WINS</small>
+      <b id="wins">0</b>
+    </div>
+
+    <div class="stat">
+      <small>LOSSES</small>
+      <b id="losses">0</b>
+    </div>
+
+    <div class="stat">
+      <small>BEST</small>
+      <b id="best">—</b>
+    </div>
+
+  </div>
+
+  <div class="feed">
+
+    <h3>LIVE VAULT FEED</h3>
+
+    <div class="log" id="log"></div>
+
+  </div>
+
+  <div class="notice">
+    Prototype only. Virtual demo credits have no monetary value.
+    No payments, wallets or real-money wagering are implemented.
+  </div>
+
 </section>
+
 <aside class="card side">
-<div class="kicker">SAFEUP / DEMO</div>
-<h2 style="margin:10px 0 6px">Crash-game prototype</h2>
-<p style="color:#7d8b95;font-size:13px;line-height:1.6">A premium vault-themed crash experience for product testing and presentation.</p>
-<hr style="border:0;border-top:1px solid #202a32;margin:20px 0">
-<div class="stat"><small>SELECTED LEVEL</small><b id="level">SAFE</b></div>
-<div class="stat" style="margin-top:10px"><small>STATUS</small><b id="sideStatus">READY</b></div>
+
+  <div class="kicker">SAFEUP / DEMO</div>
+
+  <h2>Crash-game prototype</h2>
+
+  <p>
+    A premium vault-themed crash experience
+    for product testing and presentation.
+  </p>
+
+  <hr>
+
+  <div class="stat">
+    <small>SELECTED LEVEL</small>
+    <b id="level">SAFE</b>
+  </div>
+
+  <div class="stat sideStats">
+    <small>STATUS</small>
+    <b id="sideStatus">READY</b>
+  </div>
+
+  <div class="stat sideStats">
+    <small>SESSION PROFIT</small>
+    <b id="profit">$0.00</b>
+  </div>
+
+  <button class="clear" onclick="resetDemo()">
+    RESET DEMO DATA
+  </button>
+
 </aside>
+
 </div>
 </div>
+
 <script>
-let balance=1000, round=1, running=false, mult=1, target=0, timer=null, risk='safe';
-const ranges={safe:[1.05,12],risk:[1.02,30],extreme:[1.01,100]};
-const $=id=>document.getElementById(id);
-function money(n){return '$'+n.toFixed(2)}
-function setStake(v){$('stake').value=v}
-function log(t){$('log').innerHTML='<div>• '+t+'</div>'+ $('log').innerHTML}
-function pickTarget(){const [a,b]=ranges[risk];let x=a+Math.random()*(b-a);return Math.max(a,Math.min(b,Math.pow(x,1.7)))}
-document.querySelectorAll('.risk button').forEach(b=>b.onclick=()=>{if(running)return;document.querySelectorAll('.risk button').forEach(x=>x.classList.remove('active'));b.classList.add('active');risk=b.dataset.risk;$('level').textContent=risk.toUpperCase()});
-$('action').onclick=()=>running?cashout():start();
-function start(){
- let stake=Number($('stake').value); if(stake<=0||stake>balance)return;
- balance-=stake;running=true;mult=1;target=pickTarget();$('balance').textContent=money(balance);$('action').textContent='CASH OUT';$('status').textContent='VAULT OPEN';$('sideStatus').textContent='RUNNING';log('Round #'+String(round).padStart(3,'0')+' started • '+risk.toUpperCase());
- timer=setInterval(()=>{mult*=1.008;$('mult').textContent=mult.toFixed(2)+'×';if(mult>=Number($('auto').value)){cashout()}else if(mult>=target){crash()}},45);
+
+let saved = JSON.parse(localStorage.getItem('safeup_demo') || 'null');
+
+let balance = saved?.balance ?? 1000;
+let round = saved?.round ?? 1;
+let wins = saved?.wins ?? 0;
+let losses = saved?.losses ?? 0;
+let best = saved?.best ?? 0;
+let startingBalance = saved?.startingBalance ?? 1000;
+
+let running = false;
+let mult = 1;
+let target = 0;
+let timer = null;
+let risk = 'safe';
+let stakeLocked = 0;
+
+let points = [];
+let startTime = 0;
+
+const ranges = {
+  safe:[1.05,12],
+  risk:[1.02,30],
+  extreme:[1.01,100]
+};
+
+const $ = id => document.getElementById(id);
+
+const canvas = $('chart');
+const ctx = canvas.getContext('2d');
+
+function money(n){
+  return '$' + n.toFixed(2);
 }
-function cashout(){if(!running)return;clearInterval(timer);let stake=Number($('stake').value);let win=stake*mult;balance+=win;running=false;$('last').textContent=mult.toFixed(2)+'×';$('balance').textContent=money(balance);$('status').textContent='CASHED OUT';$('sideStatus').textContent='READY';$('action').textContent='START ROUND';log('Cashed out at '+mult.toFixed(2)+'× • +'+money(win));round++;$('round').textContent='ROUND #'+String(round).padStart(3,'0')}
-function crash(){clearInterval(timer);running=false;$('last').textContent=mult.toFixed(2)+'×';$('status').textContent='LOCKED / CRASHED';$('sideStatus').textContent='READY';$('action').textContent='START ROUND';log('Vault locked at '+mult.toFixed(2)+'×');round++;$('round').textContent='ROUND #'+String(round).padStart(3,'0')}
+
+function save(){
+
+  localStorage.setItem(
+    'safeup_demo',
+    JSON.stringify({
+      balance,
+      round,
+      wins,
+      losses,
+      best,
+      startingBalance
+    })
+  );
+}
+
+function updateUI(){
+
+  $('balance').textContent = money(balance);
+  $('wins').textContent = wins;
+  $('losses').textContent = losses;
+
+  $('best').textContent =
+    best > 0 ? best.toFixed(2) + '×' : '—';
+
+  $('profit').textContent =
+    money(balance - startingBalance);
+
+  $('round').textContent =
+    'ROUND #' + String(round).padStart(3,'0');
+
+}
+
+function setStake(v){
+
+  if(running)return;
+
+  $('stake').value = v;
+
+}
+
+function log(t){
+
+  $('log').innerHTML =
+    '<div>• ' + t + '</div>' +
+    $('log').innerHTML;
+
+}
+
+function pickTarget(){
+
+  const [a,b] = ranges[risk];
+
+  let x = a + Math.random() * (b-a);
+
+  return Math.max(
+    a,
+    Math.min(
+      b,
+      Math.pow(x,1.7)
+    )
+  );
+
+}
+
+function resizeCanvas(){
+
+  const rect = canvas.getBoundingClientRect();
+
+  canvas.width = rect.width * devicePixelRatio;
+  canvas.height = rect.height * devicePixelRatio;
+
+  ctx.setTransform(
+    devicePixelRatio,
+    0,
+    0,
+    devicePixelRatio,
+    0,
+    0
+  );
+
+  drawChart();
+
+}
+
+function drawChart(){
+
+  const w = canvas.clientWidth;
+  const h = canvas.clientHeight;
+
+  ctx.clearRect(0,0,w,h);
+
+  if(points.length < 2)return;
+
+  ctx.beginPath();
+
+  points.forEach((p,i)=>{
+
+    const x = p.x * w;
+    const y = h - p.y * h;
+
+    if(i===0){
+      ctx.moveTo(x,y);
+    }else{
+      ctx.lineTo(x,y);
+    }
+
+  });
+
+  ctx.lineWidth = 3;
+  ctx.strokeStyle = '#00d9ff';
+  ctx.shadowColor = '#00d9ff';
+  ctx.shadowBlur = 15;
+
+  ctx.stroke();
+
+  ctx.shadowBlur = 0;
+
+}
+
+function buildPoint(){
+
+  const elapsed =
+    (performance.now() - startTime) / 1000;
+
+  const x = Math.min(
+    1,
+    elapsed / 22
+  );
+
+  const normalized =
+    Math.min(
+      .9,
+      Math.log(mult) /
+      Math.log(Math.max(target,2))
+    );
+
+  const y =
+    .08 +
+    normalized * .82;
+
+  points.push({
+    x,
+    y
+  });
+
+  if(points.length > 180){
+    points.shift();
+  }
+
+  drawChart();
+
+}
+
+function lockControls(lock){
+
+  $('stake').disabled = lock;
+  $('auto').disabled = lock;
+
+  document
+    .querySelectorAll('.presets button,.risk button')
+    .forEach(b => b.disabled = lock);
+
+}
+
+document
+  .querySelectorAll('.risk button')
+  .forEach(button => {
+
+    button.onclick = () => {
+
+      if(running)return;
+
+      document
+        .querySelectorAll('.risk button')
+        .forEach(x =>
+          x.classList.remove('active')
+        );
+
+      button.classList.add('active');
+
+      risk = button.dataset.risk;
+
+      $('level').textContent =
+        risk.toUpperCase();
+
+    };
+
+  });
+
+$('action').onclick = () =>
+  running ? cashout() : start();
+
+function start(){
+
+  let stake =
+    Number($('stake').value);
+
+  let auto =
+    Number($('auto').value);
+
+  if(!Number.isFinite(stake) || stake <= 0){
+    log('Invalid stake amount');
+    return;
+  }
+
+  if(stake > balance){
+
+    log('Insufficient demo balance');
+
+    $('status').textContent =
+      'INSUFFICIENT BALANCE';
+
+    return;
+  }
+
+  if(!Number.isFinite(auto) || auto < 1.01){
+
+    log('Auto cash out must be 1.01× or higher');
+
+    return;
+  }
+
+  stakeLocked = stake;
+
+  balance -= stakeLocked;
+
+  running = true;
+
+  mult = 1;
+
+  target = pickTarget();
+
+  points = [];
+
+  startTime = performance.now();
+
+  $('mult').classList.remove('crashed');
+
+  $('mult').textContent = '1.00×';
+
+  $('status').textContent =
+    'VAULT OPEN';
+
+  $('sideStatus').textContent =
+    'RUNNING';
+
+  $('action').textContent =
+    'CASH OUT';
+
+  $('action').classList.add('cashout');
+
+  $('crashMessage').classList.remove('show');
+
+  lockControls(true);
+
+  updateUI();
+
+  log(
+    'Round #' +
+    String(round).padStart(3,'0') +
+    ' started • ' +
+    risk.toUpperCase() +
+    ' • stake ' +
+    money(stakeLocked)
+  );
+
+  timer = setInterval(() => {
+
+    mult *= 1.008;
+
+    $('mult').textContent =
+      mult.toFixed(2) + '×';
+
+    buildPoint();
+
+    if(mult >= auto){
+
+      cashout();
+
+      return;
+
+    }
+
+    if(mult >= target){
+
+      crash();
+
+    }
+
+  },45);
+
+}
+
+function cashout(){
+
+  if(!running)return;
+
+  clearInterval(timer);
+
+  const win =
+    stakeLocked * mult;
+
+  balance += win;
+
+  running = false;
+
+  wins++;
+
+  if(mult > best){
+    best = mult;
+  }
+
+  $('last').textContent =
+    mult.toFixed(2) + '×';
+
+  $('balance').textContent =
+    money(balance);
+
+  $('status').textContent =
+    'CASHED OUT';
+
+  $('sideStatus').textContent =
+    'READY';
+
+  $('action').textContent =
+    'START ROUND';
+
+  $('action').classList.remove('cashout');
+
+  lockControls(false);
+
+  log(
+    'Cashed out at ' +
+    mult.toFixed(2) +
+    '× • +' +
+    money(win)
+  );
+
+  round++;
+
+  updateUI();
+
+  save();
+
+}
+
+function crash(){
+
+  if(!running)return;
+
+  clearInterval(timer);
+
+  running = false;
+
+  losses++;
+
+  $('mult').classList.add('crashed');
+
+  $('last').textContent =
+    mult.toFixed(2) + '×';
+
+  $('status').textContent =
+    'LOCKED / CRASHED';
+
+  $('sideStatus').textContent =
+    'READY';
+
+  $('action').textContent =
+    'START ROUND';
+
+  $('action').classList.remove('cashout');
+
+  $('crashText').textContent =
+    'VAULT LOCKED • ' +
+    mult.toFixed(2) +
+    '×';
+
+  $('crashMessage').classList.add('show');
+
+  lockControls(false);
+
+  log(
+    'Vault crashed at ' +
+    mult.toFixed(2) +
+    '× • LOSS'
+  );
+
+  round++;
+
+  updateUI();
+
+  save();
+
+  setTimeout(() => {
+
+    $('crashMessage').classList.remove('show');
+
+    $('mult').classList.remove('crashed');
+
+  },1200);
+
+}
+
+function resetDemo(){
+
+  if(running)return;
+
+  const ok =
+    confirm('Reset all demo data?');
+
+  if(!ok)return;
+
+  balance = 1000;
+  round = 1;
+  wins = 0;
+  losses = 0;
+  best = 0;
+  startingBalance = 1000;
+
+  $('last').textContent = '—';
+
+  $('status').textContent =
+    'READY TO START';
+
+  $('sideStatus').textContent =
+    'READY';
+
+  $('action').textContent =
+    'START ROUND';
+
+  $('log').innerHTML = '';
+
+  points = [];
+
+  updateUI();
+
+  save();
+
+}
+
+window.addEventListener(
+  'resize',
+  resizeCanvas
+);
+
+updateUI();
+
+resizeCanvas();
+
+log('SafeUp demo initialized');
+
 </script>
+
 </body>
 </html>
