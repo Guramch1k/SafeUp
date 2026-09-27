@@ -30,13 +30,13 @@
 html,body{
   margin:0;
   padding:0;
+  min-height:100%;
   background:
     radial-gradient(circle at 50% -10%,rgba(57,220,255,.07),transparent 35%),
     radial-gradient(circle at 50% 110%,rgba(245,201,91,.04),transparent 35%),
     var(--bg);
   color:var(--text);
   font-family:Inter,-apple-system,BlinkMacSystemFont,"SF Pro Display","Segoe UI",sans-serif;
-  min-height:100%;
 }
 
 body{
@@ -53,11 +53,9 @@ button{
   cursor:pointer;
 }
 
-button:disabled{
-  cursor:not-allowed;
-}
-
-/* LOADER */
+/* =========================
+   LOADER
+========================= */
 
 .loader{
   position:fixed;
@@ -109,7 +107,9 @@ button:disabled{
   to{width:100%}
 }
 
-/* APP */
+/* =========================
+   APP
+========================= */
 
 .app{
   width:min(1380px,100%);
@@ -161,7 +161,9 @@ button:disabled{
   box-shadow:var(--shadow);
 }
 
-/* GAME CARD */
+/* =========================
+   GAME
+========================= */
 
 .game-card{
   padding:14px;
@@ -198,9 +200,18 @@ button:disabled{
 }
 
 @keyframes balanceFlash{
-  0%{transform:scale(1);color:var(--text)}
-  40%{transform:scale(1.08);color:var(--green)}
-  100%{transform:scale(1);color:var(--text)}
+  0%{
+    transform:scale(1);
+    color:var(--text);
+  }
+  40%{
+    transform:scale(1.08);
+    color:var(--green);
+  }
+  100%{
+    transform:scale(1);
+    color:var(--text);
+  }
 }
 
 .status{
@@ -252,7 +263,9 @@ button:disabled{
   color:#b7c0c6;
 }
 
-/* VAULT */
+/* =========================
+   VAULT
+========================= */
 
 .vault-wrap{
   position:relative;
@@ -327,8 +340,13 @@ button:disabled{
   right:8%;
 }
 
-.metal-line.one{top:17%}
-.metal-line.two{top:83%}
+.metal-line.one{
+  top:17%;
+}
+
+.metal-line.two{
+  top:83%;
+}
 
 .rivet{
   position:absolute;
@@ -344,10 +362,22 @@ button:disabled{
 .r2{right:17px;top:17px}
 .r3{left:17px;bottom:17px}
 .r4{right:17px;bottom:17px}
-.r5{left:50%;top:17px;transform:translateX(-50%)}
-.r6{left:50%;bottom:17px;transform:translateX(-50%)}
 
-/* MONEY */
+.r5{
+  left:50%;
+  top:17px;
+  transform:translateX(-50%);
+}
+
+.r6{
+  left:50%;
+  bottom:17px;
+  transform:translateX(-50%);
+}
+
+/* =========================
+   MONEY
+========================= */
 
 .money{
   position:absolute;
@@ -407,7 +437,9 @@ button:disabled{
   border-radius:3px 3px 0 0;
 }
 
-/* GOLD */
+/* =========================
+   GOLD
+========================= */
 
 .gold{
   position:absolute;
@@ -415,15 +447,31 @@ button:disabled{
   height:15px;
   bottom:22%;
   border-radius:3px;
-  background:linear-gradient(180deg,#ffe58a,#c99427 45%,#fff0a8 55%,#a66f15);
+  background:
+    linear-gradient(
+      180deg,
+      #ffe58a,
+      #c99427 45%,
+      #fff0a8 55%,
+      #a66f15
+    );
   border:1px solid #ffe49a;
   box-shadow:0 5px 15px rgba(0,0,0,.5);
 }
 
-.gold.one{left:27%;transform:rotate(-4deg)}
-.gold.two{right:28%;transform:rotate(5deg)}
+.gold.one{
+  left:27%;
+  transform:rotate(-4deg);
+}
 
-/* MULTIPLIER */
+.gold.two{
+  right:28%;
+  transform:rotate(5deg);
+}
+
+/* =========================
+   MULTIPLIER
+========================= */
 
 .multiplier{
   position:absolute;
@@ -439,7 +487,7 @@ button:disabled{
   text-shadow:
     0 0 10px rgba(57,220,255,.3),
     0 0 35px rgba(57,220,255,.18);
-  transition:.15s ease;
+  transition:.12s ease;
   white-space:nowrap;
 }
 
@@ -448,7 +496,12 @@ button:disabled{
   position:absolute;
   inset:-20px -35px;
   border-radius:50%;
-  background:radial-gradient(circle,rgba(57,220,255,.12),transparent 65%);
+  background:
+    radial-gradient(
+      circle,
+      rgba(57,220,255,.12),
+      transparent 65%
+    );
   z-index:-1;
   filter:blur(10px);
 }
@@ -458,11 +511,22 @@ button:disabled{
 }
 
 @keyframes pulseMultiplier{
-  0%,100%{text-shadow:0 0 10px rgba(57,220,255,.3),0 0 35px rgba(57,220,255,.16)}
-  50%{text-shadow:0 0 20px rgba(57,220,255,.5),0 0 55px rgba(57,220,255,.28)}
+  0%,100%{
+    text-shadow:
+      0 0 10px rgba(57,220,255,.3),
+      0 0 35px rgba(57,220,255,.16);
+  }
+
+  50%{
+    text-shadow:
+      0 0 20px rgba(57,220,255,.5),
+      0 0 55px rgba(57,220,255,.28);
+  }
 }
 
-/* VAULT DOOR */
+/* =========================
+   VAULT DOOR
+========================= */
 
 .vault-door{
   position:absolute;
@@ -470,7 +534,14 @@ button:disabled{
   border-radius:22px;
   z-index:15;
   background:
-    linear-gradient(135deg,#49555e,#161e24 24%,#303b44 48%,#0d1318 78%,#3b464e);
+    linear-gradient(
+      135deg,
+      #49555e,
+      #161e24 24%,
+      #303b44 48%,
+      #0d1318 78%,
+      #3b464e
+    );
   border:5px solid #414c54;
   box-shadow:
     0 25px 40px rgba(0,0,0,.8),
@@ -491,22 +562,49 @@ button:disabled{
 }
 
 .vault-door.open{
-  transform:perspective(1000px) rotateY(-78deg);
-  box-shadow:-20px 30px 35px rgba(0,0,0,.5);
+  transform:
+    perspective(1000px)
+    rotateY(-78deg);
+
+  box-shadow:
+    -20px 30px 35px rgba(0,0,0,.5);
 }
 
 .vault-door.crash-close{
-  animation:slamDoor .7s cubic-bezier(.7,0,.8,.3);
+  animation:
+    slamDoor .7s cubic-bezier(.7,0,.8,.3);
 }
 
 @keyframes slamDoor{
-  0%{transform:perspective(1000px) rotateY(-78deg)}
-  55%{transform:perspective(1000px) rotateY(5deg)}
-  70%{transform:perspective(1000px) rotateY(-3deg)}
-  100%{transform:perspective(1000px) rotateY(0)}
+
+  0%{
+    transform:
+      perspective(1000px)
+      rotateY(-78deg);
+  }
+
+  55%{
+    transform:
+      perspective(1000px)
+      rotateY(5deg);
+  }
+
+  70%{
+    transform:
+      perspective(1000px)
+      rotateY(-3deg);
+  }
+
+  100%{
+    transform:
+      perspective(1000px)
+      rotateY(0);
+  }
 }
 
-/* HANDLE */
+/* =========================
+   WHEEL
+========================= */
 
 .wheel{
   position:absolute;
@@ -518,15 +616,25 @@ button:disabled{
   border-radius:50%;
   border:10px solid #4d5961;
   background:
-    radial-gradient(circle,#111820 0 19%,#c1c8cc 20% 23%,#262f36 24% 42%,#65727a 43% 47%,#11171c 48%);
+    radial-gradient(
+      circle,
+      #111820 0 19%,
+      #c1c8cc 20% 23%,
+      #262f36 24% 42%,
+      #65727a 43% 47%,
+      #11171c 48%
+    );
   box-shadow:
     inset 0 3px 5px rgba(255,255,255,.15),
     0 10px 25px rgba(0,0,0,.6);
-  transition:transform .9s cubic-bezier(.2,.85,.25,1);
+  transition:
+    transform .9s cubic-bezier(.2,.85,.25,1);
 }
 
 .vault-door.open .wheel{
-  transform:translate(-50%,-50%) rotate(110deg);
+  transform:
+    translate(-50%,-50%)
+    rotate(110deg);
 }
 
 .wheel::before,
@@ -538,12 +646,15 @@ button:disabled{
   width:8px;
   height:50px;
   transform:translate(-50%,-50%);
-  background:linear-gradient(#aeb8bd,#2c353c);
+  background:
+    linear-gradient(#aeb8bd,#2c353c);
   border-radius:5px;
 }
 
 .wheel::after{
-  transform:translate(-50%,-50%) rotate(90deg);
+  transform:
+    translate(-50%,-50%)
+    rotate(90deg);
 }
 
 .lock{
@@ -558,13 +669,17 @@ button:disabled{
   box-shadow:0 4px 10px #000;
 }
 
-/* SECURED WIN */
+/* =========================
+   WIN
+========================= */
 
 .secured-win{
   position:absolute;
   left:50%;
   top:62%;
-  transform:translate(-50%,-50%) scale(.8);
+  transform:
+    translate(-50%,-50%)
+    scale(.8);
   opacity:0;
   z-index:22;
   text-align:center;
@@ -574,7 +689,9 @@ button:disabled{
 
 .show-win .secured-win{
   opacity:1;
-  transform:translate(-50%,-50%) scale(1);
+  transform:
+    translate(-50%,-50%)
+    scale(1);
 }
 
 .win-title{
@@ -588,10 +705,13 @@ button:disabled{
   margin-top:6px;
   font-size:30px;
   font-weight:900;
-  text-shadow:0 0 25px rgba(86,229,164,.3);
+  text-shadow:
+    0 0 25px rgba(86,229,164,.3);
 }
 
-/* MESSAGE */
+/* =========================
+   CRASH MESSAGE
+========================= */
 
 .vault-message{
   position:absolute;
@@ -604,7 +724,8 @@ button:disabled{
   font-weight:900;
   letter-spacing:3px;
   color:var(--red);
-  text-shadow:0 0 15px rgba(255,64,88,.5);
+  text-shadow:
+    0 0 15px rgba(255,64,88,.5);
   transition:.25s;
   white-space:nowrap;
 }
@@ -613,7 +734,9 @@ button:disabled{
   opacity:1;
 }
 
-/* CHARACTERS */
+/* =========================
+   WINNER
+========================= */
 
 .character{
   position:absolute;
@@ -630,13 +753,32 @@ button:disabled{
 }
 
 .show-win .character-winner{
-  animation:runnerIn .8s ease forwards;
+  animation:
+    runnerIn .8s ease forwards;
 }
 
 @keyframes runnerIn{
-  0%{opacity:0;transform:translateX(70px) scale(.7)}
-  65%{opacity:1;transform:translateX(-8px) scale(1.04)}
-  100%{opacity:1;transform:translateX(0) scale(1)}
+
+  0%{
+    opacity:0;
+    transform:
+      translateX(70px)
+      scale(.7);
+  }
+
+  65%{
+    opacity:1;
+    transform:
+      translateX(-8px)
+      scale(1.04);
+  }
+
+  100%{
+    opacity:1;
+    transform:
+      translateX(0)
+      scale(1);
+  }
 }
 
 .runner-head{
@@ -666,7 +808,8 @@ button:disabled{
   left:17px;
   top:30px;
   border-radius:10px 10px 7px 7px;
-  background:linear-gradient(145deg,#222,#090909);
+  background:
+    linear-gradient(145deg,#222,#090909);
 }
 
 .runner-leg{
@@ -678,8 +821,15 @@ button:disabled{
   border-radius:6px;
 }
 
-.runner-leg.left{left:22px;transform:rotate(9deg)}
-.runner-leg.right{left:43px;transform:rotate(-10deg)}
+.runner-leg.left{
+  left:22px;
+  transform:rotate(9deg);
+}
+
+.runner-leg.right{
+  left:43px;
+  transform:rotate(-10deg);
+}
 
 .runner-arm{
   position:absolute;
@@ -690,27 +840,68 @@ button:disabled{
   border-radius:6px;
 }
 
-.runner-arm.left{left:10px;transform:rotate(35deg)}
-.runner-arm.right{right:10px;transform:rotate(-35deg)}
+.runner-arm.left{
+  left:10px;
+  transform:rotate(35deg);
+}
+
+.runner-arm.right{
+  right:10px;
+  transform:rotate(-35deg);
+}
+
+/* =========================
+   POLICE
+========================= */
 
 .character-police{
   left:50%;
   top:50%;
   width:100px;
   height:125px;
-  transform:translate(-50%,-50%) scale(.7);
+  transform:
+    translate(-50%,-50%)
+    scale(.7);
 }
 
 .show-police{
   opacity:1;
-  animation:policeAppear 1.35s ease forwards;
+  animation:
+    policeAppear 1.35s ease forwards;
 }
 
 @keyframes policeAppear{
-  0%{opacity:0;transform:translate(-50%,-50%) scale(.5) rotate(-8deg)}
-  25%{opacity:1;transform:translate(-50%,-50%) scale(1.1) rotate(4deg)}
-  45%{transform:translate(-50%,-50%) scale(1) rotate(-2deg)}
-  100%{opacity:1;transform:translate(-50%,-50%) scale(1) rotate(0)}
+
+  0%{
+    opacity:0;
+    transform:
+      translate(-50%,-50%)
+      scale(.5)
+      rotate(-8deg);
+  }
+
+  25%{
+    opacity:1;
+    transform:
+      translate(-50%,-50%)
+      scale(1.1)
+      rotate(4deg);
+  }
+
+  45%{
+    transform:
+      translate(-50%,-50%)
+      scale(1)
+      rotate(-2deg);
+  }
+
+  100%{
+    opacity:1;
+    transform:
+      translate(-50%,-50%)
+      scale(1)
+      rotate(0);
+  }
 }
 
 .police-head{
@@ -741,7 +932,8 @@ button:disabled{
   left:24px;
   top:32px;
   border-radius:8px;
-  background:linear-gradient(145deg,#31577e,#152c44);
+  background:
+    linear-gradient(145deg,#31577e,#152c44);
   border:2px solid #456f98;
 }
 
@@ -765,8 +957,13 @@ button:disabled{
   border-radius:6px;
 }
 
-.police-leg.left{left:32px}
-.police-leg.right{left:57px}
+.police-leg.left{
+  left:32px;
+}
+
+.police-leg.right{
+  left:57px;
+}
 
 .police-arm{
   position:absolute;
@@ -777,10 +974,19 @@ button:disabled{
   border-radius:6px;
 }
 
-.police-arm.left{left:14px;transform:rotate(20deg)}
-.police-arm.right{right:14px;transform:rotate(-20deg)}
+.police-arm.left{
+  left:14px;
+  transform:rotate(20deg);
+}
 
-/* FLASH / SHAKE */
+.police-arm.right{
+  right:14px;
+  transform:rotate(-20deg);
+}
+
+/* =========================
+   CRASH EFFECT
+========================= */
 
 .crash-flash{
   position:absolute;
@@ -792,31 +998,68 @@ button:disabled{
 }
 
 .crashing .crash-flash{
-  animation:crashFlash .65s ease;
+  animation:
+    crashFlash .65s ease;
 }
 
 @keyframes crashFlash{
-  0%,100%{opacity:0}
-  15%{opacity:1}
-  30%{opacity:.2}
-  45%{opacity:.9}
-  60%{opacity:.15}
+
+  0%,100%{
+    opacity:0;
+  }
+
+  15%{
+    opacity:1;
+  }
+
+  30%{
+    opacity:.2;
+  }
+
+  45%{
+    opacity:.9;
+  }
+
+  60%{
+    opacity:.15;
+  }
 }
 
 .crashing{
-  animation:vaultShake .55s ease;
+  animation:
+    vaultShake .55s ease;
 }
 
 @keyframes vaultShake{
-  0%,100%{transform:translate(0)}
-  15%{transform:translate(-5px,2px)}
-  30%{transform:translate(5px,-2px)}
-  45%{transform:translate(-4px,-1px)}
-  60%{transform:translate(3px,2px)}
-  75%{transform:translate(-2px,0)}
+
+  0%,100%{
+    transform:translate(0);
+  }
+
+  15%{
+    transform:translate(-5px,2px);
+  }
+
+  30%{
+    transform:translate(5px,-2px);
+  }
+
+  45%{
+    transform:translate(-4px,-1px);
+  }
+
+  60%{
+    transform:translate(3px,2px);
+  }
+
+  75%{
+    transform:translate(-2px,0);
+  }
 }
 
-/* GRAPH */
+/* =========================
+   GRAPH
+========================= */
 
 .graph{
   position:absolute;
@@ -832,7 +1075,9 @@ canvas{
   height:100%;
 }
 
-/* BUTTONS */
+/* =========================
+   BUTTONS
+========================= */
 
 .action-row{
   display:grid;
@@ -871,7 +1116,12 @@ canvas{
 .start{
   color:#111;
   background:
-    linear-gradient(145deg,#ffe69a,#d9a93e 48%,#8d641b);
+    linear-gradient(
+      145deg,
+      #ffe69a,
+      #d9a93e 48%,
+      #8d641b
+    );
   box-shadow:
     0 10px 25px rgba(245,201,91,.12),
     inset 0 1px 0 rgba(255,255,255,.7);
@@ -880,7 +1130,12 @@ canvas{
 .cashout{
   color:#07130f;
   background:
-    linear-gradient(145deg,#8cffc8,#38d991 48%,#1c8c61);
+    linear-gradient(
+      145deg,
+      #8cffc8,
+      #38d991 48%,
+      #1c8c61
+    );
   box-shadow:
     0 10px 25px rgba(86,229,164,.12),
     inset 0 1px 0 rgba(255,255,255,.6);
@@ -892,7 +1147,9 @@ canvas{
   box-shadow:none;
 }
 
-/* CONTROLS */
+/* =========================
+   CONTROLS
+========================= */
 
 .controls{
   display:grid;
@@ -990,7 +1247,9 @@ canvas{
   text-align:right;
 }
 
-/* SIDEBAR */
+/* =========================
+   SIDEBAR
+========================= */
 
 .sidebar{
   padding:14px;
@@ -1099,15 +1358,14 @@ canvas{
   line-height:1.5;
 }
 
-/* RESPONSIVE */
+/* =========================
+   RESPONSIVE
+========================= */
 
 @media(max-width:900px){
+
   .main-grid{
     grid-template-columns:1fr;
-  }
-
-  .sidebar{
-    display:block;
   }
 
   .vault-wrap{
@@ -1116,6 +1374,7 @@ canvas{
 }
 
 @media(max-width:620px){
+
   .app{
     padding:
       max(10px,env(safe-area-inset-top))
@@ -1220,6 +1479,7 @@ canvas{
 }
 
 @media(max-width:390px){
+
   .vault-wrap{
     height:400px;
     min-height:400px;
@@ -1242,9 +1502,8 @@ canvas{
   }
 }
 
-/* REDUCED MOTION */
-
 @media(prefers-reduced-motion:reduce){
+
   *,
   *::before,
   *::after{
@@ -1258,44 +1517,103 @@ canvas{
 
 <body>
 
+<!-- =========================
+     LOADER
+========================= -->
+
 <div class="loader" id="loader">
   <div class="loader-logo">SAFEUP</div>
   <div class="loader-sub">CRASH GAME DEMO</div>
-  <div class="loader-line"><span></span></div>
+
+  <div class="loader-line">
+    <span></span>
+  </div>
 </div>
+
 
 <div class="app">
 
+  <!-- =========================
+       HEADER
+  ========================== -->
+
   <header class="header">
+
     <div class="brand">
-      <div class="logo">SAFEUP</div>
-      <div class="demo-badge">DEMO • NO REAL MONEY</div>
+
+      <div class="logo">
+        SAFEUP
+      </div>
+
+      <div class="demo-badge">
+        DEMO • NO REAL MONEY
+      </div>
+
     </div>
+
   </header>
 
+
   <main class="main-grid">
+
+    <!-- =========================
+         GAME
+    ========================== -->
 
     <section class="card game-card">
 
       <div class="game-top">
 
         <div class="balance-block">
-          <span class="balance-label">BALANCE</span>
-          <div class="balance" id="topBalance">$1,000.00</div>
+
+          <span class="balance-label">
+            BALANCE
+          </span>
+
+          <div
+            class="balance"
+            id="topBalance"
+          >
+            $1,000.00
+          </div>
+
         </div>
 
-        <div class="status" id="status">
+
+        <div
+          class="status"
+          id="status"
+        >
+
           <span class="status-dot"></span>
-          <span id="statusText">READY</span>
+
+          <span id="statusText">
+            READY
+          </span>
+
         </div>
+
 
         <div class="round-info">
-          ROUND <strong id="roundLabel">#0</strong>
+
+          ROUND
+          <strong id="roundLabel">
+            #0
+          </strong>
+
         </div>
 
       </div>
 
-      <div class="vault-wrap" id="vaultWrap">
+
+      <!-- =========================
+           VAULT
+      ========================== -->
+
+      <div
+        class="vault-wrap"
+        id="vaultWrap"
+      >
 
         <div class="vault-body">
 
@@ -1320,7 +1638,11 @@ canvas{
 
           </div>
 
-          <div class="vault-door" id="vaultDoor">
+
+          <div
+            class="vault-door"
+            id="vaultDoor"
+          >
 
             <div class="wheel"></div>
             <div class="lock"></div>
@@ -1329,54 +1651,124 @@ canvas{
 
         </div>
 
-        <div class="multiplier" id="multiplier">1.00x</div>
 
-        <div class="secured-win">
-          <div class="win-title">WIN SECURED</div>
-          <div class="secured-amount" id="securedAmount">+$0.00</div>
+        <div
+          class="multiplier"
+          id="multiplier"
+        >
+          1.00x
         </div>
 
-        <div class="vault-message">VAULT LOCKED</div>
+
+        <div class="secured-win">
+
+          <div class="win-title">
+            WIN SECURED
+          </div>
+
+          <div
+            class="secured-amount"
+            id="securedAmount"
+          >
+            +$0.00
+          </div>
+
+        </div>
+
+
+        <div class="vault-message">
+          VAULT LOCKED
+        </div>
+
+
+        <!-- WINNER -->
 
         <div class="character character-winner">
+
           <div class="runner-head"></div>
           <div class="runner-mask"></div>
           <div class="runner-body"></div>
+
           <div class="runner-leg left"></div>
           <div class="runner-leg right"></div>
+
           <div class="runner-arm left"></div>
           <div class="runner-arm right"></div>
+
         </div>
 
-        <div class="character character-police" id="characterPolice">
+
+        <!-- POLICE -->
+
+        <div
+          class="character character-police"
+          id="characterPolice"
+        >
+
           <div class="police-head"></div>
           <div class="police-hat"></div>
+
           <div class="police-body">
             <div class="police-badge"></div>
           </div>
+
           <div class="police-leg left"></div>
           <div class="police-leg right"></div>
+
           <div class="police-arm left"></div>
           <div class="police-arm right"></div>
+
         </div>
+
+
+        <!-- GRAPH -->
 
         <div class="graph">
           <canvas id="chart"></canvas>
         </div>
 
+
         <div class="crash-flash"></div>
 
       </div>
 
+
+      <!-- =========================
+           ACTIONS
+      ========================== -->
+
       <div class="action-row">
-        <button class="action start" id="startBtn">START ROUND</button>
-        <button class="action cashout" id="cashoutBtn" disabled>CASH OUT</button>
+
+        <button
+          class="action start"
+          id="startBtn"
+        >
+          START ROUND
+        </button>
+
+
+        <button
+          class="action cashout"
+          id="cashoutBtn"
+          disabled
+        >
+          CASH OUT
+        </button>
+
       </div>
+
+
+      <!-- =========================
+           CONTROLS
+      ========================== -->
 
       <div class="controls">
 
         <div class="control-box">
-          <span class="control-label">STAKE</span>
+
+          <span class="control-label">
+            STAKE
+          </span>
 
           <input
             class="stake-input"
@@ -1389,100 +1781,268 @@ canvas{
           >
 
           <div class="presets">
-            <button class="preset" data-value="10">$10</button>
-            <button class="preset active" data-value="25">$25</button>
-            <button class="preset" data-value="50">$50</button>
+
+            <button
+              class="preset"
+              data-value="10"
+            >
+              $10
+            </button>
+
+            <button
+              class="preset active"
+              data-value="25"
+            >
+              $25
+            </button>
+
+            <button
+              class="preset"
+              data-value="50"
+            >
+              $50
+            </button>
+
           </div>
+
         </div>
 
+
         <div class="control-box">
-          <span class="control-label">RISK</span>
+
+          <span class="control-label">
+            RISK
+          </span>
 
           <div class="risk">
-            <button class="risk-btn safe active" data-risk="SAFE">SAFE</button>
-            <button class="risk-btn risk" data-risk="RISK">RISK</button>
-            <button class="risk-btn extreme" data-risk="EXTREME">EXTREME</button>
+
+            <button
+              class="risk-btn safe active"
+              data-risk="SAFE"
+            >
+              SAFE
+            </button>
+
+            <button
+              class="risk-btn risk"
+              data-risk="RISK"
+            >
+              RISK
+            </button>
+
+            <button
+              class="risk-btn extreme"
+              data-risk="EXTREME"
+            >
+              EXTREME
+            </button>
+
           </div>
+
         </div>
 
+
         <div class="control-box">
-          <span class="control-label">AUTO CASH OUT</span>
+
+          <span class="control-label">
+            AUTO CASH OUT
+          </span>
 
           <div class="auto-wrap">
+
             <input
               class="auto-input"
               id="autoCash"
               type="number"
-              min="1.01"
+              min="1.05"
               step="0.01"
               value="2.00"
             >
-            <span style="font-size:10px;color:#748089;">x</span>
+
+            <span
+              style="
+                font-size:10px;
+                color:#748089;
+              "
+            >
+              x
+            </span>
+
           </div>
+
         </div>
 
       </div>
 
+
       <div class="current-bet">
+
         CURRENT BET:
-        <strong id="currentBet">$25.00</strong>
+
+        <strong id="currentBet">
+          $25.00
+        </strong>
+
       </div>
 
     </section>
 
+
+    <!-- =========================
+         SIDEBAR
+    ========================== -->
+
     <aside class="card sidebar">
 
-      <div class="side-title">SESSION STATS</div>
+      <div class="side-title">
+        SESSION STATS
+      </div>
+
 
       <div class="stats-grid">
 
         <div class="stat">
-          <div class="stat-label">BALANCE</div>
-          <div class="stat-value" id="balance">$1,000.00</div>
+
+          <div class="stat-label">
+            BALANCE
+          </div>
+
+          <div
+            class="stat-value"
+            id="balance"
+          >
+            $1,000.00
+          </div>
+
         </div>
+
 
         <div class="stat">
-          <div class="stat-label">ROUNDS</div>
-          <div class="stat-value" id="rounds">0</div>
+
+          <div class="stat-label">
+            ROUNDS
+          </div>
+
+          <div
+            class="stat-value"
+            id="rounds"
+          >
+            0
+          </div>
+
         </div>
+
 
         <div class="stat">
-          <div class="stat-label">WINS</div>
-          <div class="stat-value" id="wins">0</div>
+
+          <div class="stat-label">
+            WINS
+          </div>
+
+          <div
+            class="stat-value"
+            id="wins"
+          >
+            0
+          </div>
+
         </div>
+
 
         <div class="stat">
-          <div class="stat-label">LOSSES</div>
-          <div class="stat-value" id="losses">0</div>
+
+          <div class="stat-label">
+            LOSSES
+          </div>
+
+          <div
+            class="stat-value"
+            id="losses"
+          >
+            0
+          </div>
+
         </div>
+
 
         <div class="stat">
-          <div class="stat-label">WIN RATE</div>
-          <div class="stat-value" id="winRate">0%</div>
+
+          <div class="stat-label">
+            WIN RATE
+          </div>
+
+          <div
+            class="stat-value"
+            id="winRate"
+          >
+            0%
+          </div>
+
         </div>
+
 
         <div class="stat">
-          <div class="stat-label">PROFIT</div>
-          <div class="stat-value" id="profit">$0.00</div>
+
+          <div class="stat-label">
+            PROFIT
+          </div>
+
+          <div
+            class="stat-value"
+            id="profit"
+          >
+            $0.00
+          </div>
+
         </div>
 
-        <div class="stat" style="grid-column:1/-1">
-          <div class="stat-label">BEST CRASH</div>
-          <div class="stat-value" id="best">1.00x</div>
+
+        <div
+          class="stat"
+          style="grid-column:1/-1"
+        >
+
+          <div class="stat-label">
+            BEST CRASH
+          </div>
+
+          <div
+            class="stat-value"
+            id="best"
+          >
+            1.00x
+          </div>
+
         </div>
 
       </div>
 
-      <button class="reset" id="resetBtn">RESET DEMO</button>
 
-      <div class="history-title">RECENT ROUNDS</div>
+      <button
+        class="reset"
+        id="resetBtn"
+      >
+        RESET DEMO
+      </button>
 
-      <div class="history" id="history"></div>
+
+      <div class="history-title">
+        RECENT ROUNDS
+      </div>
+
+
+      <div
+        class="history"
+        id="history"
+      ></div>
+
 
       <div class="disclaimer">
+
         SAFEUP is a virtual demonstration interface.
         All balances, rounds, winnings and losses are simulated.
         No real money, deposits, withdrawals or cryptocurrency are involved.
+
       </div>
 
     </aside>
@@ -1491,354 +2051,554 @@ canvas{
 
 </div>
 
+
 <script>
+
 /* =========================================================
-   SAFEUP v5
-   Realistic crash-point probability model
-   Demo only — no real money
+   SAFEUP v5.1
+   DEMO ONLY
 ========================================================= */
 
 const STORAGE_KEY = "safeup_demo_v3";
 
+
 const DEFAULT_STATE = {
-  balance: 1000,
-  rounds: 0,
-  wins: 0,
-  losses: 0,
-  profit: 0,
-  best: 1,
-  history: []
+
+  balance:1000,
+
+  rounds:0,
+
+  wins:0,
+
+  losses:0,
+
+  profit:0,
+
+  best:1,
+
+  history:[]
+
 };
 
-let state = loadState();
+
+let state =
+  loadState();
+
 
 let running = false;
+
 let crashed = false;
+
 let multiplier = 1;
+
 let crashPoint = 1;
+
 let stake = 25;
+
 let risk = "SAFE";
+
 let roundNumber = 0;
+
 let animationFrame = null;
+
 let roundStartTime = 0;
+
 
 /* =========================================================
    DOM
 ========================================================= */
 
-const loader = document.getElementById("loader");
+const loader =
+  document.getElementById("loader");
 
-const topBalance = document.getElementById("topBalance");
-const balanceEl = document.getElementById("balance");
+const topBalance =
+  document.getElementById("topBalance");
 
-const roundsEl = document.getElementById("rounds");
-const winsEl = document.getElementById("wins");
-const lossesEl = document.getElementById("losses");
-const winRateEl = document.getElementById("winRate");
-const profitEl = document.getElementById("profit");
-const bestEl = document.getElementById("best");
+const balanceEl =
+  document.getElementById("balance");
 
-const status = document.getElementById("status");
-const statusText = document.getElementById("statusText");
-const roundLabel = document.getElementById("roundLabel");
+const roundsEl =
+  document.getElementById("rounds");
 
-const multiplierEl = document.getElementById("multiplier");
-const vaultWrap = document.getElementById("vaultWrap");
-const vaultDoor = document.getElementById("vaultDoor");
+const winsEl =
+  document.getElementById("wins");
 
-const securedWin = document.querySelector(".secured-win");
-const securedAmount = document.getElementById("securedAmount");
+const lossesEl =
+  document.getElementById("losses");
 
-const startBtn = document.getElementById("startBtn");
-const cashoutBtn = document.getElementById("cashoutBtn");
+const winRateEl =
+  document.getElementById("winRate");
 
-const stakeInput = document.getElementById("stake");
-const currentBet = document.getElementById("currentBet");
-const autoCash = document.getElementById("autoCash");
+const profitEl =
+  document.getElementById("profit");
 
-const historyEl = document.getElementById("history");
-const resetBtn = document.getElementById("resetBtn");
+const bestEl =
+  document.getElementById("best");
 
-const canvas = document.getElementById("chart");
-const ctx = canvas.getContext("2d");
+const status =
+  document.getElementById("status");
+
+const statusText =
+  document.getElementById("statusText");
+
+const roundLabel =
+  document.getElementById("roundLabel");
+
+const multiplierEl =
+  document.getElementById("multiplier");
+
+const vaultWrap =
+  document.getElementById("vaultWrap");
+
+const vaultDoor =
+  document.getElementById("vaultDoor");
+
+const securedAmount =
+  document.getElementById("securedAmount");
+
+const startBtn =
+  document.getElementById("startBtn");
+
+const cashoutBtn =
+  document.getElementById("cashoutBtn");
+
+const stakeInput =
+  document.getElementById("stake");
+
+const currentBet =
+  document.getElementById("currentBet");
+
+const autoCash =
+  document.getElementById("autoCash");
+
+const historyEl =
+  document.getElementById("history");
+
+const resetBtn =
+  document.getElementById("resetBtn");
+
+const canvas =
+  document.getElementById("chart");
+
+const ctx =
+  canvas.getContext("2d");
+
 
 /* =========================================================
    STORAGE
 ========================================================= */
 
 function loadState(){
+
   try{
-    const saved = localStorage.getItem(STORAGE_KEY);
+
+    const saved =
+      localStorage.getItem(STORAGE_KEY);
 
     if(!saved){
-      return {...DEFAULT_STATE};
+      return {
+        ...DEFAULT_STATE
+      };
     }
 
-    const parsed = JSON.parse(saved);
+    const parsed =
+      JSON.parse(saved);
 
     return {
+
       ...DEFAULT_STATE,
+
       ...parsed,
-      history:Array.isArray(parsed.history) ? parsed.history : []
+
+      history:
+        Array.isArray(parsed.history)
+          ? parsed.history
+          : []
+
     };
 
-  }catch{
-    return {...DEFAULT_STATE};
+  }catch(error){
+
+    return {
+      ...DEFAULT_STATE
+    };
+
   }
+
 }
 
+
 function saveState(){
-  localStorage.setItem(STORAGE_KEY,JSON.stringify(state));
+
+  localStorage.setItem(
+    STORAGE_KEY,
+    JSON.stringify(state)
+  );
+
 }
+
+
+/* =========================================================
+   MONEY
+========================================================= */
+
+function money(value){
+
+  return "$" +
+    Number(value).toLocaleString(
+      "en-US",
+      {
+        minimumFractionDigits:2,
+        maximumFractionDigits:2
+      }
+    );
+
+}
+
 
 /* =========================================================
    UI
 ========================================================= */
 
-function money(value){
-  return "$" + Number(value).toLocaleString("en-US",{
-    minimumFractionDigits:2,
-    maximumFractionDigits:2
-  });
-}
-
 function updateUI(){
 
-  topBalance.textContent = money(state.balance);
-  balanceEl.textContent = money(state.balance);
+  topBalance.textContent =
+    money(state.balance);
 
-  roundsEl.textContent = state.rounds;
-  winsEl.textContent = state.wins;
-  lossesEl.textContent = state.losses;
+  balanceEl.textContent =
+    money(state.balance);
 
-  const total = state.wins + state.losses;
+  roundsEl.textContent =
+    state.rounds;
 
-  const winRate = total
-    ? (state.wins / total) * 100
-    : 0;
+  winsEl.textContent =
+    state.wins;
 
-  winRateEl.textContent = winRate.toFixed(1) + "%";
+  lossesEl.textContent =
+    state.losses;
+
+
+  const total =
+    state.wins + state.losses;
+
+
+  const winRate =
+    total
+      ? (state.wins / total) * 100
+      : 0;
+
+
+  winRateEl.textContent =
+    winRate.toFixed(1) + "%";
+
 
   profitEl.textContent =
     (state.profit >= 0 ? "+" : "") +
     money(state.profit);
 
+
   profitEl.className =
     "stat-value " +
-    (state.profit >= 0 ? "profit-positive" : "profit-negative");
+    (
+      state.profit >= 0
+        ? "profit-positive"
+        : "profit-negative"
+    );
 
-  bestEl.textContent = state.best.toFixed(2) + "x";
 
-  currentBet.textContent = money(Number(stakeInput.value) || 0);
+  bestEl.textContent =
+    state.best.toFixed(2) + "x";
+
+
+  currentBet.textContent =
+    money(
+      Number(stakeInput.value) || 0
+    );
+
 
   renderHistory();
+
 }
+
 
 function renderHistory(){
 
   if(!state.history.length){
+
     historyEl.innerHTML = `
-      <div style="
-        color:#59656d;
-        font-size:9px;
-        padding:10px 0;
-      ">
+      <div
+        style="
+          color:#59656d;
+          font-size:9px;
+          padding:10px 0;
+        "
+      >
         No rounds yet
       </div>
     `;
+
     return;
   }
 
-  historyEl.innerHTML = state.history
-    .slice(0,10)
-    .map((item,index)=>{
 
-      const win = item.result === "WIN";
+  historyEl.innerHTML =
+    state.history
+      .slice(0,10)
+      .map(item=>{
 
-      return `
-        <div class="history-row">
-          <span class="history-round">
-            #${item.round}
-          </span>
+        const win =
+          item.result === "WIN";
 
-          <span class="history-mult ${win ? "history-win" : "history-loss"}">
-            ${item.multiplier.toFixed(2)}x
-          </span>
 
-          <span class="${win ? "history-win" : "history-loss"}">
-            ${win ? "+" + money(item.payout) : "CRASH"}
-          </span>
-        </div>
-      `;
+        return `
+          <div class="history-row">
 
-    })
-    .join("");
+            <span class="history-round">
+              #${item.round}
+            </span>
+
+            <span
+              class="
+                history-mult
+                ${win
+                  ? "history-win"
+                  : "history-loss"}
+              "
+            >
+              ${item.multiplier.toFixed(2)}x
+            </span>
+
+            <span
+              class="
+                ${win
+                  ? "history-win"
+                  : "history-loss"}
+              "
+            >
+              ${
+                win
+                  ? "+" + money(item.payout)
+                  : "CRASH"
+              }
+            </span>
+
+          </div>
+        `;
+
+      })
+      .join("");
+
 }
 
+
 /* =========================================================
-   REALISTIC CRASH MODEL
-=========================================================
-
-   The important change in v5 is here.
-
-   Instead of a relatively generous random range,
-   crash points are generated using a weighted distribution.
-
-   Approximate target distribution:
-
-   1.00–1.20x  ~25%
-   1.20–1.50x  ~25%
-   1.50–2.00x  ~22%
-   2.00–3.00x  ~14%
-   3.00–5.00x  ~8%
-   5.00–10x    ~4%
-   10x+        ~2%
-
-   A small house edge is also applied.
-
-   This is only a simulated mathematical model.
+   RANDOM
 ========================================================= */
 
 function randomBetween(min,max){
-  return min + Math.random() * (max - min);
+
+  return (
+    min +
+    Math.random() *
+    (max - min)
+  );
+
 }
 
-function weightedCrashPoint(){
 
-  const r = Math.random();
+/* =========================================================
+   REALISTIC CRASH MODEL
+========================================================= */
+
+function generateCrashPoint(){
+
+  const r =
+    Math.random();
 
   let raw;
 
+
   /*
-    VERY LOW CRASH
-    25%
+    23%
+    1.05–1.20x
   */
 
-  if(r < 0.25){
+  if(r < 0.23){
 
-    raw = randomBetween(1.01,1.20);
+    raw =
+      randomBetween(
+        1.05,
+        1.20
+      );
 
   }
 
+
   /*
-    LOW CRASH
-    25%
+    27%
+    1.20–1.50x
   */
 
   else if(r < 0.50){
 
-    raw = randomBetween(1.20,1.50);
+    raw =
+      randomBetween(
+        1.20,
+        1.50
+      );
 
   }
 
+
   /*
-    MEDIUM-LOW
-    22%
+    23%
+    1.50–2.00x
   */
 
-  else if(r < 0.72){
+  else if(r < 0.73){
 
-    raw = randomBetween(1.50,2.00);
+    raw =
+      randomBetween(
+        1.50,
+        2.00
+      );
 
   }
 
+
   /*
-    MEDIUM
     14%
+    2.00–3.00x
   */
 
-  else if(r < 0.86){
+  else if(r < 0.87){
 
-    raw = randomBetween(2.00,3.00);
+    raw =
+      randomBetween(
+        2.00,
+        3.00
+      );
 
   }
 
+
   /*
-    GOOD RUN
-    8%
+    7%
+    3.00–5.00x
   */
 
   else if(r < 0.94){
 
-    raw = randomBetween(3.00,5.00);
+    raw =
+      randomBetween(
+        3.00,
+        5.00
+      );
 
   }
 
+
   /*
-    RARE
     4%
+    5.00–10.00x
   */
 
   else if(r < 0.98){
 
-    raw = randomBetween(5.00,10.00);
+    raw =
+      randomBetween(
+        5.00,
+        10.00
+      );
 
   }
 
+
   /*
-    VERY RARE
     2%
+    10.00–25.00x
   */
 
   else{
 
-    raw = randomBetween(10.00,25.00);
+    raw =
+      randomBetween(
+        10.00,
+        25.00
+      );
 
   }
 
-  /*
-    Apply small house edge.
 
-    The reduction is intentionally modest.
-    It mostly affects the long-run expectation,
-    not individual rounds.
+  /*
+    Small house edge.
   */
 
-  const HOUSE_EDGE = 0.94;
+  const HOUSE_EDGE =
+    0.96;
 
-  raw = 1 + (raw - 1) * HOUSE_EDGE;
+
+  raw =
+    1 +
+    (raw - 1) *
+    HOUSE_EDGE;
+
 
   /*
-    Risk mode affects the distribution slightly.
+    Never below 1.05x.
+  */
 
-    SAFE:
-    More moderate rounds.
+  raw =
+    Math.max(
+      1.05,
+      raw
+    );
 
-    RISK:
-    Slightly wider distribution.
 
-    EXTREME:
-    More volatility and rare high multipliers.
+  /*
+    Risk modifies volatility.
   */
 
   if(risk === "RISK"){
 
     if(Math.random() < 0.10){
-      raw *= randomBetween(1.05,1.18);
+
+      raw *=
+        randomBetween(
+          1.05,
+          1.15
+        );
+
     }
 
   }
+
 
   if(risk === "EXTREME"){
 
     if(Math.random() < 0.18){
-      raw *= randomBetween(1.05,1.30);
+
+      raw *=
+        randomBetween(
+          1.05,
+          1.25
+        );
+
     }
 
   }
 
-  return Math.max(
-    1.01,
-    Math.min(raw,50)
+
+  return Math.min(
+    raw,
+    50
   );
+
 }
 
-function generateCrashPoint(){
-  return weightedCrashPoint();
-}
 
 /* =========================================================
-   VAULT VISUALS
+   VAULT RESET
 ========================================================= */
 
 function resetVault(){
@@ -1848,6 +2608,7 @@ function resetVault(){
     "crash-close"
   );
 
+
   vaultWrap.classList.remove(
     "crashing",
     "crash",
@@ -1855,20 +2616,37 @@ function resetVault(){
     "show-police"
   );
 
-  securedAmount.textContent = "+$0.00";
 
-  multiplierEl.textContent = "1.00x";
+  securedAmount.textContent =
+    "+$0.00";
+
+
+  multiplierEl.textContent =
+    "1.00x";
+
 
   status.classList.remove(
     "live",
     "crashed"
   );
 
-  statusText.textContent = "READY";
 
-  cashoutBtn.disabled = true;
-  startBtn.disabled = false;
+  statusText.textContent =
+    "READY";
+
+
+  cashoutBtn.disabled =
+    true;
+
+  startBtn.disabled =
+    false;
+
 }
+
+
+/* =========================================================
+   OPEN VAULT
+========================================================= */
 
 function openVault(){
 
@@ -1879,28 +2657,55 @@ function openVault(){
     "show-police"
   );
 
-  vaultDoor.classList.remove("crash-close");
+
+  vaultDoor.classList.remove(
+    "crash-close"
+  );
+
 
   requestAnimationFrame(()=>{
-    vaultDoor.classList.add("open");
+
+    vaultDoor.classList.add(
+      "open"
+    );
+
   });
+
 }
 
-function cashoutVault(){
+
+/* =========================================================
+   WIN VISUAL
+========================================================= */
+
+function showWinVisual(){
 
   const amount =
     Number(stakeInput.value) *
     multiplier;
 
+
   securedAmount.textContent =
     "+" + money(amount);
 
-  vaultWrap.classList.add("show-win");
+
+  vaultWrap.classList.add(
+    "show-win"
+  );
+
 }
 
-function crashVault(){
 
-  vaultWrap.classList.remove("show-win");
+/* =========================================================
+   CRASH VISUAL
+========================================================= */
+
+function showCrashVisual(){
+
+  vaultWrap.classList.remove(
+    "show-win"
+  );
+
 
   vaultWrap.classList.add(
     "crashing",
@@ -1908,16 +2713,25 @@ function crashVault(){
     "show-police"
   );
 
-  vaultDoor.classList.remove("open");
+
+  vaultDoor.classList.remove(
+    "open"
+  );
+
 
   /*
-    Force animation restart.
+    Restart CSS animation.
   */
 
   void vaultDoor.offsetWidth;
 
-  vaultDoor.classList.add("crash-close");
+
+  vaultDoor.classList.add(
+    "crash-close"
+  );
+
 }
+
 
 /* =========================================================
    BALANCE ANIMATION
@@ -1925,14 +2739,28 @@ function crashVault(){
 
 function animateBalance(){
 
-  topBalance.classList.remove("changed");
-  balanceEl.classList.remove("changed");
+  topBalance.classList.remove(
+    "changed"
+  );
+
+  balanceEl.classList.remove(
+    "changed"
+  );
+
 
   void topBalance.offsetWidth;
 
-  topBalance.classList.add("changed");
-  balanceEl.classList.add("changed");
+
+  topBalance.classList.add(
+    "changed"
+  );
+
+  balanceEl.classList.add(
+    "changed"
+  );
+
 }
+
 
 /* =========================================================
    GRAPH
@@ -1940,14 +2768,23 @@ function animateBalance(){
 
 let graphPoints = [];
 
+
 function resizeCanvas(){
 
-  const rect = canvas.getBoundingClientRect();
+  const rect =
+    canvas.getBoundingClientRect();
 
-  const dpr = window.devicePixelRatio || 1;
 
-  canvas.width = rect.width * dpr;
-  canvas.height = rect.height * dpr;
+  const dpr =
+    window.devicePixelRatio || 1;
+
+
+  canvas.width =
+    rect.width * dpr;
+
+  canvas.height =
+    rect.height * dpr;
+
 
   ctx.setTransform(
     dpr,
@@ -1958,21 +2795,37 @@ function resizeCanvas(){
     0
   );
 
+
   drawGraph();
+
 }
+
 
 function drawGraph(){
 
-  const rect = canvas.getBoundingClientRect();
+  const rect =
+    canvas.getBoundingClientRect();
 
-  const width = rect.width;
-  const height = rect.height;
 
-  ctx.clearRect(0,0,width,height);
+  const width =
+    rect.width;
+
+  const height =
+    rect.height;
+
+
+  ctx.clearRect(
+    0,
+    0,
+    width,
+    height
+  );
+
 
   if(graphPoints.length < 2){
     return;
   }
+
 
   const maxPoint =
     Math.max(
@@ -1981,40 +2834,75 @@ function drawGraph(){
       2
     );
 
+
   ctx.beginPath();
 
-  graphPoints.forEach((point,i)=>{
 
-    const x =
-      (i / Math.max(graphPoints.length - 1,1)) *
-      width;
+  graphPoints.forEach(
+    (point,index)=>{
 
-    const normalized =
-      Math.min(
-        point / maxPoint,
-        1
-      );
+      const x =
+        (
+          index /
+          Math.max(
+            graphPoints.length - 1,
+            1
+          )
+        ) *
+        width;
 
-    const y =
-      height -
-      normalized * (height * .85);
 
-    if(i === 0){
-      ctx.moveTo(x,y);
-    }else{
-      ctx.lineTo(x,y);
+      const normalized =
+        Math.min(
+          point / maxPoint,
+          1
+        );
+
+
+      const y =
+        height -
+        normalized *
+        (height * .85);
+
+
+      if(index === 0){
+
+        ctx.moveTo(
+          x,
+          y
+        );
+
+      }else{
+
+        ctx.lineTo(
+          x,
+          y
+        );
+
+      }
+
     }
+  );
 
-  });
 
   ctx.lineWidth = 2;
-  ctx.strokeStyle = "rgba(57,220,255,.8)";
+
+  ctx.strokeStyle =
+    "rgba(57,220,255,.8)";
+
   ctx.shadowBlur = 12;
-  ctx.shadowColor = "rgba(57,220,255,.5)";
+
+  ctx.shadowColor =
+    "rgba(57,220,255,.5)";
+
+
   ctx.stroke();
 
+
   ctx.shadowBlur = 0;
+
 }
+
 
 /* =========================================================
    ROUND ANIMATION
@@ -2026,53 +2914,64 @@ function animateRound(timestamp){
     return;
   }
 
+
   const elapsed =
-    timestamp - roundStartTime;
+    timestamp -
+    roundStartTime;
 
-  /*
-    Growth speed.
-
-    Early game:
-    slower.
-
-    Later:
-    increasingly fast.
-
-    This creates a more natural
-    exponential crash-game feeling.
-  */
 
   const seconds =
     elapsed / 1000;
+
+
+  /*
+    Slower and smoother than v5.
+
+    This makes the beginning of a round
+    clearly visible on iPhone.
+  */
 
   multiplier =
     Math.max(
       1,
       Math.pow(
-        1.085,
+        1.055,
         seconds * 10
       )
     );
 
+
   /*
-    Slight random micro variation
-    prevents the graph from looking
-    completely robotic.
+    Keep precision sensible.
   */
 
-  const visualMultiplier =
-    multiplier;
+  multiplier =
+    Math.round(
+      multiplier * 100
+    ) / 100;
+
 
   multiplierEl.textContent =
-    visualMultiplier.toFixed(2) + "x";
+    multiplier.toFixed(2) +
+    "x";
 
-  graphPoints.push(visualMultiplier);
 
-  if(graphPoints.length > 140){
+  graphPoints.push(
+    multiplier
+  );
+
+
+  if(
+    graphPoints.length > 140
+  ){
+
     graphPoints.shift();
+
   }
 
+
   drawGraph();
+
 
   /*
     AUTO CASH OUT
@@ -2081,33 +2980,45 @@ function animateRound(timestamp){
   const auto =
     Number(autoCash.value);
 
+
   if(
-    auto >= 1.01 &&
+    auto >= 1.05 &&
     multiplier >= auto &&
     multiplier < crashPoint
   ){
+
     cashOut();
+
     return;
+
   }
+
 
   /*
     CRASH
   */
 
-  if(multiplier >= crashPoint){
+  if(
+    multiplier >= crashPoint
+  ){
 
     crashRound();
+
     return;
+
   }
+
 
   animationFrame =
     requestAnimationFrame(
       animateRound
     );
+
 }
 
+
 /* =========================================================
-   START ROUND
+   START
 ========================================================= */
 
 function startRound(){
@@ -2116,68 +3027,118 @@ function startRound(){
     return;
   }
 
+
   const requestedStake =
     Number(stakeInput.value);
 
+
   if(
-    !Number.isFinite(requestedStake) ||
+    !Number.isFinite(
+      requestedStake
+    ) ||
     requestedStake <= 0
   ){
-    alert("Enter a valid stake.");
+
+    alert(
+      "Enter a valid stake."
+    );
+
     return;
+
   }
 
-  if(requestedStake > state.balance){
-    alert("Insufficient balance.");
+
+  if(
+    requestedStake >
+    state.balance
+  ){
+
+    alert(
+      "Insufficient balance."
+    );
+
     return;
+
   }
 
-  stake = requestedStake;
 
-  /*
-    Round number increments only
-    when a real round starts.
-  */
+  stake =
+    requestedStake;
+
 
   roundNumber =
     state.rounds + 1;
 
-  multiplier = 1;
+
+  multiplier =
+    1;
+
 
   crashPoint =
     generateCrashPoint();
 
-  graphPoints = [1];
 
-  running = true;
-  crashed = false;
+  graphPoints =
+    [1];
+
+
+  running =
+    true;
+
+  crashed =
+    false;
+
+
+  /*
+    Round counted when it starts.
+  */
 
   state.rounds++;
 
+
   /*
-    Stake is removed immediately.
+    Stake leaves balance.
   */
 
-  state.balance -= stake;
+  state.balance -=
+    stake;
+
 
   saveState();
+
+
   updateUI();
+
+
   animateBalance();
+
 
   roundLabel.textContent =
     "#" + roundNumber;
 
-  status.classList.remove("crashed");
-  status.classList.add("live");
+
+  status.classList.remove(
+    "crashed"
+  );
+
+  status.classList.add(
+    "live"
+  );
+
 
   statusText.textContent =
     "LIVE";
 
-  startBtn.disabled = true;
-  cashoutBtn.disabled = false;
+
+  startBtn.disabled =
+    true;
+
+  cashoutBtn.disabled =
+    false;
+
 
   /*
-    Clear previous result.
+    Clear old result.
   */
 
   vaultWrap.classList.remove(
@@ -2187,32 +3148,50 @@ function startRound(){
     "show-police"
   );
 
+
   vaultDoor.classList.remove(
-    "crash-close"
+    "crash-close",
+    "open"
   );
+
+
+  securedAmount.textContent =
+    "+$0.00";
+
+
+  multiplierEl.textContent =
+    "1.00x";
+
 
   /*
     Open safe.
   */
 
-  vaultDoor.classList.remove("open");
-
   requestAnimationFrame(()=>{
-    vaultDoor.classList.add("open");
+
+    vaultDoor.classList.add(
+      "open"
+    );
+
   });
+
 
   roundStartTime =
     performance.now();
+
 
   cancelAnimationFrame(
     animationFrame
   );
 
+
   animationFrame =
     requestAnimationFrame(
       animateRound
     );
+
 }
+
 
 /* =========================================================
    CASH OUT
@@ -2224,66 +3203,120 @@ function cashOut(){
     return;
   }
 
-  if(multiplier >= crashPoint){
+
+  /*
+    If crash was reached at this exact
+    frame, player loses.
+  */
+
+  if(
+    multiplier >= crashPoint
+  ){
+
     crashRound();
+
     return;
+
   }
 
-  running = false;
+
+  running =
+    false;
+
 
   cancelAnimationFrame(
     animationFrame
   );
 
+
   const payout =
     stake * multiplier;
 
+
   /*
-    Return winnings to balance.
+    Return payout.
   */
 
-  state.balance += payout;
+  state.balance +=
+    payout;
+
 
   state.wins++;
 
-  /*
-    Profit = payout - original stake.
-  */
 
   state.profit +=
     payout - stake;
 
-  if(multiplier > state.best){
-    state.best = multiplier;
+
+  if(
+    multiplier >
+    state.best
+  ){
+
+    state.best =
+      multiplier;
+
   }
 
+
   state.history.unshift({
-    round:roundNumber,
-    multiplier,
-    result:"WIN",
-    payout
+
+    round:
+      roundNumber,
+
+    multiplier:
+      multiplier,
+
+    result:
+      "WIN",
+
+    payout:
+      payout
+
   });
 
+
   state.history =
-    state.history.slice(0,30);
+    state.history.slice(
+      0,
+      30
+    );
+
 
   saveState();
 
+
   /*
-    Visual win.
+    WIN visual.
   */
 
-  cashoutVault();
+  showWinVisual();
 
-  status.classList.remove("live");
-  statusText.textContent = "WIN";
 
-  cashoutBtn.disabled = true;
-  startBtn.disabled = false;
+  status.classList.remove(
+    "live"
+  );
+
+
+  statusText.textContent =
+    "WIN";
+
+
+  cashoutBtn.disabled =
+    true;
+
+
+  startBtn.disabled =
+    false;
+
 
   updateUI();
+
+
   animateBalance();
+
 }
+
 
 /* =========================================================
    CRASH
@@ -2295,12 +3328,19 @@ function crashRound(){
     return;
   }
 
-  running = false;
-  crashed = true;
+
+  running =
+    false;
+
+
+  crashed =
+    true;
+
 
   cancelAnimationFrame(
     animationFrame
   );
+
 
   multiplier =
     Math.min(
@@ -2308,57 +3348,102 @@ function crashRound(){
       crashPoint
     );
 
+
   multiplierEl.textContent =
-    crashPoint.toFixed(2) + "x";
+    crashPoint.toFixed(2) +
+    "x";
+
 
   /*
-    Loss.
-
-    Stake has already been removed
-    from balance when round started.
+    Stake was already removed
+    at the beginning of the round.
   */
 
   state.losses++;
 
-  state.profit -= stake;
+
+  state.profit -=
+    stake;
+
 
   /*
-    Best crash point is tracked.
+    Best crash.
   */
 
-  if(crashPoint > state.best){
-    state.best = crashPoint;
+  if(
+    crashPoint >
+    state.best
+  ){
+
+    state.best =
+      crashPoint;
+
   }
 
+
   state.history.unshift({
-    round:roundNumber,
-    multiplier:crashPoint,
-    result:"LOSS",
-    payout:0
+
+    round:
+      roundNumber,
+
+    multiplier:
+      crashPoint,
+
+    result:
+      "LOSS",
+
+    payout:
+      0
+
   });
 
+
   state.history =
-    state.history.slice(0,30);
+    state.history.slice(
+      0,
+      30
+    );
+
 
   saveState();
 
-  status.classList.remove("live");
-  status.classList.add("crashed");
+
+  status.classList.remove(
+    "live"
+  );
+
+  status.classList.add(
+    "crashed"
+  );
+
 
   statusText.textContent =
     "CRASHED";
 
-  cashoutBtn.disabled = true;
-  startBtn.disabled = true;
 
-  crashVault();
+  cashoutBtn.disabled =
+    true;
 
-  updateUI();
-  animateBalance();
+
+  startBtn.disabled =
+    true;
+
 
   /*
-    Let the crash animation finish
-    before returning to READY.
+    Crash visual.
+  */
+
+  showCrashVisual();
+
+
+  updateUI();
+
+
+  animateBalance();
+
+
+  /*
+    Wait until animation finishes.
   */
 
   setTimeout(()=>{
@@ -2368,75 +3453,136 @@ function crashRound(){
     updateUI();
 
   },1450);
+
 }
+
 
 /* =========================================================
    PRESETS
 ========================================================= */
 
-document.querySelectorAll(".preset")
-.forEach(btn=>{
+document
+  .querySelectorAll(".preset")
+  .forEach(btn=>{
 
-  btn.addEventListener("click",()=>{
+    btn.addEventListener(
+      "click",
+      ()=>{
 
-    const value =
-      Number(btn.dataset.value);
+        if(running){
+          return;
+        }
 
-    stakeInput.value =
-      value;
 
-    document
-      .querySelectorAll(".preset")
-      .forEach(b=>{
-        b.classList.remove("active");
-      });
+        const value =
+          Number(
+            btn.dataset.value
+          );
 
-    btn.classList.add("active");
 
-    currentBet.textContent =
-      money(value);
+        stakeInput.value =
+          value;
+
+
+        document
+          .querySelectorAll(".preset")
+          .forEach(b=>{
+
+            b.classList.remove(
+              "active"
+            );
+
+          });
+
+
+        btn.classList.add(
+          "active"
+        );
+
+
+        currentBet.textContent =
+          money(value);
+
+      }
+    );
+
   });
 
-});
 
 /* =========================================================
    RISK
 ========================================================= */
 
-document.querySelectorAll(".risk-btn")
-.forEach(btn=>{
+document
+  .querySelectorAll(".risk-btn")
+  .forEach(btn=>{
 
-  btn.addEventListener("click",()=>{
+    btn.addEventListener(
+      "click",
+      ()=>{
 
-    if(running){
-      return;
-    }
+        if(running){
+          return;
+        }
 
-    risk =
-      btn.dataset.risk;
 
-    document
-      .querySelectorAll(".risk-btn")
-      .forEach(b=>{
-        b.classList.remove("active");
-      });
+        risk =
+          btn.dataset.risk;
 
-    btn.classList.add("active");
+
+        document
+          .querySelectorAll(".risk-btn")
+          .forEach(b=>{
+
+            b.classList.remove(
+              "active"
+            );
+
+          });
+
+
+        btn.classList.add(
+          "active"
+        );
+
+      }
+    );
+
   });
 
-});
 
 /* =========================================================
-   STAKE INPUT
+   STAKE
 ========================================================= */
 
 stakeInput.addEventListener(
   "input",
   ()=>{
-    currentBet.textContent =
-      money(Number(stakeInput.value) || 0);
+
+    let value =
+      Number(
+        stakeInput.value
+      );
+
+
+    if(
+      Number.isFinite(value) &&
+      value > 0
+    ){
+
+      currentBet.textContent =
+        money(value);
+
+    }else{
+
+      currentBet.textContent =
+        "$0.00";
+
+    }
+
   }
 );
+
 
 /* =========================================================
    AUTO CASH
@@ -2447,22 +3593,36 @@ autoCash.addEventListener(
   ()=>{
 
     let value =
-      Number(autoCash.value);
+      Number(
+        autoCash.value
+      );
 
-    if(!Number.isFinite(value)){
+
+    if(
+      !Number.isFinite(value)
+    ){
+
       value = 2;
+
     }
+
 
     value =
       Math.max(
-        1.01,
-        Math.min(value,50)
+        1.05,
+        Math.min(
+          value,
+          50
+        )
       );
+
 
     autoCash.value =
       value.toFixed(2);
+
   }
 );
+
 
 /* =========================================================
    BUTTONS
@@ -2473,10 +3633,12 @@ startBtn.addEventListener(
   startRound
 );
 
+
 cashoutBtn.addEventListener(
   "click",
   cashOut
 );
+
 
 /* =========================================================
    RESET
@@ -2490,55 +3652,84 @@ resetBtn.addEventListener(
       return;
     }
 
+
     const confirmed =
       confirm(
         "Reset the demo balance and statistics?"
       );
 
+
     if(!confirmed){
       return;
     }
 
+
     state = {
+
       ...DEFAULT_STATE,
+
       history:[]
+
     };
+
 
     saveState();
 
-    roundNumber = 0;
-    multiplier = 1;
+
+    roundNumber =
+      0;
+
+
+    multiplier =
+      1;
+
 
     roundLabel.textContent =
       "#0";
 
+
     resetVault();
+
+
     updateUI();
+
+
     animateBalance();
+
   }
 );
 
+
 /* =========================================================
-   KEYBOARD
+   SPACEBAR
 ========================================================= */
 
 document.addEventListener(
   "keydown",
   e=>{
 
-    if(e.code === "Space"){
+    if(
+      e.code === "Space"
+    ){
 
       e.preventDefault();
 
+
       if(!running){
+
         startRound();
+
       }else{
+
         cashOut();
+
       }
+
     }
 
   }
 );
+
 
 /* =========================================================
    RESIZE
@@ -2549,6 +3740,7 @@ window.addEventListener(
   resizeCanvas
 );
 
+
 /* =========================================================
    INIT
 ========================================================= */
@@ -2558,16 +3750,29 @@ window.addEventListener(
   ()=>{
 
     updateUI();
+
     resizeCanvas();
 
-    setTimeout(()=>{
-      loader.classList.add("hide");
-    },900);
+
+    setTimeout(
+      ()=>{
+        loader.classList.add(
+          "hide"
+        );
+      },
+      900
+    );
 
   }
 );
 
+
+/*
+  Initial render.
+*/
+
 updateUI();
+
 </script>
 
 </body>
