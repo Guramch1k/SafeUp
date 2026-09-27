@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<meta name="theme-color" content="#070b0f">
+<meta name="theme-color" content="#06090d">
 <title>SAFEUP — Vault Crash Demo</title>
 
 <style>
@@ -11,10 +11,7 @@
   --bg:#06090d;
   --panel:#0d1319;
   --panel2:#111920;
-  --metal:#202a31;
-  --metal2:#303b43;
   --gold:#f5c95b;
-  --gold2:#fff0a8;
   --cyan:#39dcff;
   --green:#56e5a4;
   --red:#ff4f63;
@@ -42,16 +39,6 @@ html,body{
 
 body{
   padding:18px;
-}
-
-button,
-input{
-  font:inherit;
-}
-
-button{
-  border:0;
-  cursor:pointer;
 }
 
 .app{
@@ -140,14 +127,40 @@ button{
   display:flex;
   justify-content:space-between;
   align-items:center;
-  margin-bottom:14px;
+  margin-bottom:12px;
 }
 
-.round-label{
-  color:var(--muted);
-  font-size:11px;
-  font-weight:800;
+.balance-top{
+  display:flex;
+  align-items:baseline;
+  gap:9px;
+}
+
+.balance-top span{
+  color:#71808a;
+  font-size:9px;
+  font-weight:900;
   letter-spacing:.14em;
+}
+
+.balance-top strong{
+  color:#fff;
+  font-size:20px;
+  font-weight:950;
+  letter-spacing:-.03em;
+}
+
+.top-right{
+  display:flex;
+  align-items:center;
+  gap:12px;
+}
+
+.round-small{
+  color:#53616a;
+  font-size:9px;
+  font-weight:800;
+  letter-spacing:.08em;
 }
 
 .status{
@@ -164,7 +177,6 @@ button{
   height:7px;
   border-radius:50%;
   background:#5d6970;
-  box-shadow:0 0 10px rgba(255,255,255,.1);
 }
 
 .status.live .status-dot{
@@ -181,7 +193,7 @@ button{
 
 .vault-wrap{
   position:relative;
-  height:470px;
+  height:430px;
   border-radius:22px;
   overflow:hidden;
   background:
@@ -203,8 +215,6 @@ button{
   background:radial-gradient(ellipse,rgba(0,0,0,.8),transparent 70%);
   filter:blur(5px);
 }
-
-/* glow behind vault */
 
 .vault-glow{
   position:absolute;
@@ -230,7 +240,7 @@ button{
 .vault{
   position:relative;
   width:min(570px,88%);
-  height:365px;
+  height:345px;
   transform-style:preserve-3d;
   filter:drop-shadow(0 35px 35px rgba(0,0,0,.55));
 }
@@ -248,30 +258,28 @@ button{
     0 0 0 1px rgba(255,255,255,.08);
 }
 
-/* metal lines */
-
-.vault-body:before,
-.vault-body:after{
+.vault-body:before{
   content:"";
   position:absolute;
-  pointer-events:none;
-}
-
-.vault-body:before{
   inset:12px;
   border-radius:17px;
   border:1px solid rgba(255,255,255,.1);
 }
 
 .vault-body:after{
+  content:"";
+  position:absolute;
   left:20px;
   right:20px;
   top:50%;
   height:1px;
-  background:linear-gradient(90deg,transparent,rgba(255,255,255,.12),transparent);
+  background:linear-gradient(
+    90deg,
+    transparent,
+    rgba(255,255,255,.12),
+    transparent
+  );
 }
-
-/* inside */
 
 .vault-inside{
   position:absolute;
@@ -288,7 +296,7 @@ button{
   box-shadow:inset 0 0 50px rgba(0,0,0,.9);
 }
 
-/* money */
+/* MONEY */
 
 .money-area{
   position:absolute;
@@ -300,7 +308,6 @@ button{
   justify-content:center;
   align-items:flex-end;
   gap:12px;
-  transform:translateZ(12px);
 }
 
 .money-stack{
@@ -359,7 +366,7 @@ button{
   background:rgba(245,201,91,.12);
 }
 
-/* vault center */
+/* MULTIPLIER */
 
 .vault-center{
   position:absolute;
@@ -380,7 +387,6 @@ button{
   text-shadow:
     0 0 25px rgba(57,220,255,.28),
     0 3px 15px rgba(0,0,0,.8);
-  transition:.2s;
 }
 
 .vault-multiplier.cashout{
@@ -435,24 +441,14 @@ button{
 }
 
 @keyframes slamDoor{
-  0%{
-    transform:rotateY(-108deg);
-  }
-  55%{
-    transform:rotateY(10deg);
-  }
-  72%{
-    transform:rotateY(-4deg);
-  }
-  88%{
-    transform:rotateY(2deg);
-  }
-  100%{
-    transform:rotateY(0deg);
-  }
+  0%{transform:rotateY(-108deg)}
+  55%{transform:rotateY(10deg)}
+  72%{transform:rotateY(-4deg)}
+  88%{transform:rotateY(2deg)}
+  100%{transform:rotateY(0deg)}
 }
 
-/* door inner plate */
+/* DOOR INNER */
 
 .door-inner{
   position:absolute;
@@ -464,7 +460,7 @@ button{
     0 0 0 1px rgba(0,0,0,.5);
 }
 
-/* vault wheel */
+/* WHEEL */
 
 .vault-wheel{
   position:absolute;
@@ -476,7 +472,13 @@ button{
   border-radius:50%;
   border:13px solid #626e74;
   background:
-    radial-gradient(circle,#20292e 0 28%,#12181c 29% 43%,#354047 44% 46%,#11171b 47%);
+    radial-gradient(
+      circle,
+      #20292e 0 28%,
+      #12181c 29% 43%,
+      #354047 44% 46%,
+      #11171b 47%
+    );
   box-shadow:
     inset 0 0 20px rgba(0,0,0,.8),
     0 10px 20px rgba(0,0,0,.5);
@@ -492,7 +494,6 @@ button{
   border-radius:5px;
   background:#d8b44d;
   transform:translateX(-50%);
-  box-shadow:0 0 10px rgba(245,201,91,.3);
 }
 
 .vault-wheel:after{
@@ -508,7 +509,7 @@ button{
   background:#151c20;
 }
 
-/* handle */
+/* HANDLE */
 
 .handle{
   position:absolute;
@@ -518,7 +519,12 @@ button{
   height:145px;
   transform:translateY(-50%);
   border-radius:15px;
-  background:linear-gradient(90deg,#8d6b25,#f4d675,#987225);
+  background:linear-gradient(
+    90deg,
+    #8d6b25,
+    #f4d675,
+    #987225
+  );
   box-shadow:0 0 15px rgba(245,201,91,.18);
 }
 
@@ -531,7 +537,11 @@ button{
   height:20px;
   border-radius:8px;
   transform:translateX(-50%);
-  background:linear-gradient(180deg,#f3d875,#86621e);
+  background:linear-gradient(
+    180deg,
+    #f3d875,
+    #86621e
+  );
 }
 
 .handle:before{
@@ -551,18 +561,30 @@ button{
 }
 
 @keyframes handleOpen{
-  from{transform:translateY(-50%) rotate(0deg)}
-  to{transform:translateY(-50%) rotate(120deg)}
+  from{
+    transform:translateY(-50%) rotate(0deg)
+  }
+  to{
+    transform:translateY(-50%) rotate(120deg)
+  }
 }
 
 @keyframes handleCrash{
-  0%{transform:translateY(-50%) rotate(120deg)}
-  35%{transform:translateY(-50%) rotate(-30deg)}
-  60%{transform:translateY(-50%) rotate(15deg)}
-  100%{transform:translateY(-50%) rotate(0deg)}
+  0%{
+    transform:translateY(-50%) rotate(120deg)
+  }
+  35%{
+    transform:translateY(-50%) rotate(-30deg)
+  }
+  60%{
+    transform:translateY(-50%) rotate(15deg)
+  }
+  100%{
+    transform:translateY(-50%) rotate(0deg)
+  }
 }
 
-/* lock */
+/* LOCK */
 
 .lock{
   position:absolute;
@@ -588,7 +610,7 @@ button{
   border-radius:4px;
 }
 
-/* crash */
+/* CRASH */
 
 .vault-wrap.crashing{
   animation:vaultShake .1s linear 8;
@@ -664,7 +686,7 @@ button{
   left:16px;
   right:16px;
   bottom:12px;
-  height:75px;
+  height:65px;
   opacity:.55;
   pointer-events:none;
 }
@@ -674,17 +696,68 @@ button{
   height:100%;
 }
 
+/* ACTIONS */
+
+.actions{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:10px;
+}
+
+.game-card > .actions{
+  margin-top:11px;
+}
+
+.action{
+  height:53px;
+  border-radius:15px;
+  font-weight:950;
+  letter-spacing:.08em;
+  font-size:12px;
+  transition:.2s;
+}
+
+.action:active{
+  transform:scale(.98);
+}
+
+.start{
+  color:#071016;
+  background:linear-gradient(
+    135deg,
+    #fff0a0,
+    #e1b546
+  );
+  box-shadow:0 10px 30px rgba(245,201,91,.13);
+}
+
+.cashout{
+  color:#06110d;
+  background:linear-gradient(
+    135deg,
+    #92f6c5,
+    #42cf91
+  );
+  box-shadow:0 10px 30px rgba(86,229,164,.1);
+}
+
+.action:disabled{
+  opacity:.35;
+  cursor:not-allowed;
+  box-shadow:none;
+}
+
 /* CONTROLS */
 
 .controls{
-  margin-top:16px;
+  margin-top:12px;
   display:grid;
   grid-template-columns:1fr 1fr;
   gap:14px;
 }
 
 .control-panel{
-  padding:16px;
+  padding:15px;
   border:1px solid var(--line);
   background:rgba(255,255,255,.018);
   border-radius:18px;
@@ -706,7 +779,7 @@ button{
 .stake-input{
   width:100%;
   min-width:0;
-  height:45px;
+  height:43px;
   padding:0 13px;
   color:white;
   background:#080d11;
@@ -725,19 +798,14 @@ button{
 }
 
 .preset{
-  height:45px;
-  padding:0 12px;
+  height:43px;
+  padding:0 11px;
   border-radius:11px;
   background:#151d23;
   color:#9caab3;
   border:1px solid rgba(255,255,255,.07);
   font-size:11px;
   font-weight:800;
-}
-
-.preset:hover{
-  color:white;
-  border-color:rgba(255,255,255,.16);
 }
 
 .auto-row{
@@ -747,7 +815,7 @@ button{
 
 .auto-input{
   flex:1;
-  height:45px;
+  height:43px;
   padding:0 12px;
   background:#080d11;
   border:1px solid rgba(255,255,255,.09);
@@ -764,60 +832,19 @@ button{
 
 .risk{
   flex:1;
-  height:35px;
+  height:34px;
   border-radius:9px;
   background:#131b21;
   border:1px solid rgba(255,255,255,.06);
   color:#77858e;
   font-size:10px;
   font-weight:900;
-  letter-spacing:.05em;
 }
 
 .risk.active{
   color:white;
   border-color:rgba(57,220,255,.35);
   background:rgba(57,220,255,.07);
-}
-
-/* ACTIONS */
-
-.actions{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:10px;
-  margin-top:14px;
-}
-
-.action{
-  height:55px;
-  border-radius:15px;
-  font-weight:950;
-  letter-spacing:.08em;
-  font-size:12px;
-  transition:.2s;
-}
-
-.action:active{
-  transform:scale(.98);
-}
-
-.start{
-  color:#071016;
-  background:linear-gradient(135deg,#fff0a0,#e1b546);
-  box-shadow:0 10px 30px rgba(245,201,91,.13);
-}
-
-.cashout{
-  color:#06110d;
-  background:linear-gradient(135deg,#92f6c5,#42cf91);
-  box-shadow:0 10px 30px rgba(86,229,164,.1);
-}
-
-.action:disabled{
-  opacity:.35;
-  cursor:not-allowed;
-  box-shadow:none;
 }
 
 /* SIDEBAR */
@@ -936,10 +963,6 @@ button{
   letter-spacing:.08em;
 }
 
-.reset:hover{
-  color:white;
-}
-
 /* FOOTER */
 
 .footer-note{
@@ -950,9 +973,10 @@ button{
   margin-top:16px;
 }
 
-/* MOBILE */
+/* TABLET */
 
 @media(max-width:850px){
+
   body{
     padding:10px;
   }
@@ -967,7 +991,7 @@ button{
   }
 
   .vault-wrap{
-    height:410px;
+    height:400px;
   }
 
   .vault{
@@ -979,30 +1003,32 @@ button{
     width:145px;
     height:145px;
   }
-
-  .money-area{
-    transform:scale(.8);
-    transform-origin:bottom center;
-  }
-
-  .controls{
-    grid-template-columns:1fr;
-  }
 }
 
+/* PHONE */
+
 @media(max-width:520px){
+
+  body{
+    padding:7px;
+  }
+
   .header{
-    margin-bottom:10px;
+    margin-bottom:8px;
   }
 
   .logo{
-    width:39px;
-    height:39px;
+    width:38px;
+    height:38px;
     border-radius:11px;
   }
 
   .brand-title{
     font-size:17px;
+  }
+
+  .brand-sub{
+    font-size:9px;
   }
 
   .demo-badge{
@@ -1011,67 +1037,138 @@ button{
   }
 
   .game-card{
-    padding:11px;
-    border-radius:19px;
+    padding:9px;
+    border-radius:18px;
+  }
+
+  .game-top{
+    margin-bottom:7px;
+  }
+
+  .balance-top{
+    gap:6px;
+  }
+
+  .balance-top span{
+    font-size:8px;
+  }
+
+  .balance-top strong{
+    font-size:17px;
+  }
+
+  .top-right{
+    gap:5px;
+    flex-direction:column;
+    align-items:flex-end;
+  }
+
+  .status{
+    font-size:9px;
+  }
+
+  .round-small{
+    font-size:7px;
   }
 
   .vault-wrap{
-    height:355px;
-    border-radius:17px;
+    height:335px;
+    border-radius:16px;
   }
 
   .vault{
-    height:265px;
+    height:255px;
     width:94%;
   }
 
   .vault-wheel{
-    width:115px;
-    height:115px;
+    width:112px;
+    height:112px;
     border-width:9px;
   }
 
   .vault-wheel:before{
     height:25px;
+    width:6px;
   }
 
   .vault-wheel:after{
-    width:35px;
-    height:35px;
+    width:34px;
+    height:34px;
   }
 
   .handle{
-    right:22px;
-    height:100px;
+    right:20px;
+    height:95px;
+    width:17px;
+  }
+
+  .handle:before,
+  .handle:after{
+    width:32px;
+    height:17px;
+  }
+
+  .lock{
+    width:31px;
+    height:31px;
+    left:20px;
+    top:20px;
   }
 
   .vault-center{
-    width:210px;
+    width:205px;
   }
 
   .vault-multiplier{
-    font-size:52px;
+    font-size:51px;
+  }
+
+  .vault-message{
+    font-size:9px;
   }
 
   .money-area{
-    bottom:10px;
-    transform:scale(.63);
+    bottom:8px;
+    transform:scale(.62);
+    transform-origin:bottom center;
+  }
+
+  .graph{
+    height:50px;
+    bottom:8px;
   }
 
   .locked-message{
-    bottom:12px;
+    bottom:10px;
+    font-size:8px;
   }
 
-  .actions{
-    grid-template-columns:1fr;
+  .game-card > .actions{
+    margin-top:9px;
   }
 
   .action{
-    height:51px;
+    height:48px;
+    font-size:11px;
+  }
+
+  .controls{
+    grid-template-columns:1fr;
+    gap:9px;
+    margin-top:9px;
+  }
+
+  .control-panel{
+    padding:12px;
   }
 
   .sidebar{
     grid-template-columns:1fr;
+  }
+
+  .footer-note{
+    margin-top:10px;
   }
 }
 </style>
@@ -1081,309 +1178,518 @@ button{
 
 <div class="app">
 
-  <header class="header">
-    <div class="brand">
-      <div class="logo">S</div>
-      <div>
-        <div class="brand-title">SAFEUP</div>
-        <div class="brand-sub">VAULT CRASH PROTOTYPE</div>
+<header class="header">
+
+  <div class="brand">
+
+    <div class="logo">
+      S
+    </div>
+
+    <div>
+      <div class="brand-title">
+        SAFEUP
+      </div>
+
+      <div class="brand-sub">
+        VAULT CRASH PROTOTYPE
       </div>
     </div>
 
-    <div class="demo-badge">
-      DEMO • NO REAL MONEY
-    </div>
-  </header>
-
-  <main class="layout">
-
-    <!-- GAME -->
-    <section class="card game-card">
-
-      <div class="game-top">
-        <div class="round-label" id="roundLabel">
-          ROUND #001
-        </div>
-
-        <div class="status" id="status">
-          <span class="status-dot"></span>
-          <span id="statusText">READY</span>
-        </div>
-      </div>
-
-      <div class="vault-wrap" id="vaultWrap">
-
-        <div class="vault-glow"></div>
-        <div class="vault-floor"></div>
-
-        <div class="vault">
-
-          <!-- BODY -->
-          <div class="vault-body">
-
-            <div class="vault-inside">
-
-              <div class="money-area">
-
-                <div class="money-stack">
-                  <div class="bill">$</div>
-                  <div class="bill">$</div>
-                  <div class="bill">$</div>
-                  <div class="money-band"></div>
-                </div>
-
-                <div class="money-stack">
-                  <div class="bill">$</div>
-                  <div class="bill">$</div>
-                  <div class="bill">$</div>
-                  <div class="money-band"></div>
-                </div>
-
-                <div class="money-stack">
-                  <div class="bill">$</div>
-                  <div class="bill">$</div>
-                  <div class="bill">$</div>
-                  <div class="money-band"></div>
-                </div>
-
-              </div>
-
-            </div>
-
-          </div>
-
-          <!-- DOOR -->
-          <div class="vault-door" id="vaultDoor">
-
-            <div class="door-inner"></div>
-
-            <div class="lock"></div>
-
-            <div class="vault-wheel"></div>
-
-            <div class="handle"></div>
-
-          </div>
-
-          <!-- CENTER INFO -->
-          <div class="vault-center">
-            <div class="vault-multiplier" id="multiplier">
-              1.00×
-            </div>
-
-            <div class="vault-message" id="vaultMessage">
-              VAULT READY
-            </div>
-          </div>
-
-        </div>
-
-        <div class="graph">
-          <canvas id="chart"></canvas>
-        </div>
-
-        <div class="crash-flash"></div>
-
-        <div class="locked-message">
-          VAULT LOCKED
-        </div>
-
-      </div>
-
-      <!-- CONTROLS -->
-
-      <div class="controls">
-
-        <div class="control-panel">
-
-          <div class="control-title">
-            STAKE
-          </div>
-
-          <div class="stake-row">
-
-            <input
-              id="stake"
-              class="stake-input"
-              type="number"
-              min="1"
-              step="1"
-              value="25"
-            >
-
-            <div class="presets">
-              <button class="preset" data-stake="10">$10</button>
-              <button class="preset" data-stake="25">$25</button>
-              <button class="preset" data-stake="50">$50</button>
-            </div>
-
-          </div>
-
-          <div class="control-title" style="margin-top:14px;">
-            RISK PROFILE
-          </div>
-
-          <div class="risk-row">
-            <button class="risk active" data-risk="safe">SAFE</button>
-            <button class="risk" data-risk="risk">RISK</button>
-            <button class="risk" data-risk="extreme">EXTREME</button>
-          </div>
-
-        </div>
-
-
-        <div class="control-panel">
-
-          <div class="control-title">
-            AUTO CASH OUT
-          </div>
-
-          <div class="auto-row">
-
-            <input
-              id="autoCash"
-              class="auto-input"
-              type="number"
-              min="1.01"
-              step=".01"
-              value="2.00"
-            >
-
-          </div>
-
-          <div class="control-title" style="margin-top:14px;">
-            CURRENT BET
-          </div>
-
-          <div style="
-            color:#fff;
-            font-size:20px;
-            font-weight:900;
-          " id="currentBet">
-            $25
-          </div>
-
-        </div>
-
-      </div>
-
-
-      <div class="actions">
-
-        <button class="action start" id="startBtn">
-          START ROUND
-        </button>
-
-        <button class="action cashout" id="cashoutBtn" disabled>
-          CASH OUT
-        </button>
-
-      </div>
-
-    </section>
-
-
-    <!-- SIDEBAR -->
-
-    <aside class="sidebar">
-
-      <div class="card side-card">
-
-        <div class="balance-label">
-          DEMO BALANCE
-        </div>
-
-        <div class="balance" id="balance">
-          $1,000.00
-        </div>
-
-        <div class="side-divider"></div>
-
-        <div class="stats">
-
-          <div class="stat">
-            <div class="stat-label">ROUNDS</div>
-            <div class="stat-value" id="rounds">0</div>
-          </div>
-
-          <div class="stat">
-            <div class="stat-label">WINS</div>
-            <div class="stat-value" id="wins">0</div>
-          </div>
-
-          <div class="stat">
-            <div class="stat-label">LOSSES</div>
-            <div class="stat-value" id="losses">0</div>
-          </div>
-
-          <div class="stat">
-            <div class="stat-label">WIN RATE</div>
-            <div class="stat-value" id="winRate">0%</div>
-          </div>
-
-          <div class="stat">
-            <div class="stat-label">PROFIT</div>
-            <div class="stat-value" id="profit">$0</div>
-          </div>
-
-          <div class="stat">
-            <div class="stat-label">BEST</div>
-            <div class="stat-value" id="best">1.00×</div>
-          </div>
-
-        </div>
-
-        <button class="reset" id="resetBtn">
-          RESET DEMO
-        </button>
-
-      </div>
-
-
-      <div class="card side-card">
-
-        <div class="history-title">
-          <span>RECENT ROUNDS</span>
-          <span>LAST 10</span>
-        </div>
-
-        <div class="history" id="history">
-          <div class="history-item mid">1.00×</div>
-        </div>
-
-      </div>
-
-
-      <div class="card side-card">
-
-        <div style="
-          font-size:11px;
-          font-weight:950;
-          letter-spacing:.12em;
-          margin-bottom:9px;
-        ">
-          SAFEUP / DEMO
-        </div>
-
-        <div style="
-          color:#71808a;
-          font-size:11px;
-          line-height:1.65;
-        ">
-          Crash-game interface prototype.
-          All balances, rounds and winnings are virtual.
-          No real money, wallets or payments are connected.
-        </div>
-
-      </div>
-
-    </aside>
-
-  </main>
-
-  <div class="footer-note">
-    SAFEUP DEMO • VIRTUAL CREDITS ONLY • FOR UI / GAME PROTOTYPE
   </div>
+
+  <div class="demo-badge">
+    DEMO • NO REAL MONEY
+  </div>
+
+</header>
+
+
+<main class="layout">
+
+<section class="card game-card">
+
+  <!-- TOP BAR -->
+
+  <div class="game-top">
+
+    <div class="balance-top">
+
+      <span>
+        BALANCE
+      </span>
+
+      <strong id="topBalance">
+        $1,000.00
+      </strong>
+
+    </div>
+
+    <div class="top-right">
+
+      <div class="status" id="status">
+
+        <span class="status-dot"></span>
+
+        <span id="statusText">
+          READY
+        </span>
+
+      </div>
+
+      <div class="round-small" id="roundLabel">
+        ROUND #001
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <!-- VAULT -->
+
+  <div class="vault-wrap" id="vaultWrap">
+
+    <div class="vault-glow"></div>
+
+    <div class="vault-floor"></div>
+
+    <div class="vault">
+
+      <!-- BODY -->
+
+      <div class="vault-body">
+
+        <div class="vault-inside">
+
+          <div class="money-area">
+
+            <div class="money-stack">
+
+              <div class="bill">$</div>
+              <div class="bill">$</div>
+              <div class="bill">$</div>
+
+              <div class="money-band"></div>
+
+            </div>
+
+
+            <div class="money-stack">
+
+              <div class="bill">$</div>
+              <div class="bill">$</div>
+              <div class="bill">$</div>
+
+              <div class="money-band"></div>
+
+            </div>
+
+
+            <div class="money-stack">
+
+              <div class="bill">$</div>
+              <div class="bill">$</div>
+              <div class="bill">$</div>
+
+              <div class="money-band"></div>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+
+      <!-- DOOR -->
+
+      <div class="vault-door" id="vaultDoor">
+
+        <div class="door-inner"></div>
+
+        <div class="lock"></div>
+
+        <div class="vault-wheel"></div>
+
+        <div class="handle"></div>
+
+      </div>
+
+
+      <!-- MULTIPLIER -->
+
+      <div class="vault-center">
+
+        <div
+          class="vault-multiplier"
+          id="multiplier"
+        >
+          1.00×
+        </div>
+
+        <div
+          class="vault-message"
+          id="vaultMessage"
+        >
+          VAULT READY
+        </div>
+
+      </div>
+
+    </div>
+
+
+    <!-- GRAPH -->
+
+    <div class="graph">
+
+      <canvas id="chart"></canvas>
+
+    </div>
+
+
+    <div class="crash-flash"></div>
+
+
+    <div class="locked-message">
+      VAULT LOCKED
+    </div>
+
+  </div>
+
+
+  <!-- MAIN BUTTONS -->
+
+  <div class="actions">
+
+    <button
+      class="action start"
+      id="startBtn"
+    >
+      START ROUND
+    </button>
+
+    <button
+      class="action cashout"
+      id="cashoutBtn"
+      disabled
+    >
+      CASH OUT
+    </button>
+
+  </div>
+
+
+  <!-- CONTROLS -->
+
+  <div class="controls">
+
+    <div class="control-panel">
+
+      <div class="control-title">
+        STAKE
+      </div>
+
+      <div class="stake-row">
+
+        <input
+          id="stake"
+          class="stake-input"
+          type="number"
+          min="1"
+          step="1"
+          value="25"
+        >
+
+        <div class="presets">
+
+          <button
+            class="preset"
+            data-stake="10"
+          >
+            $10
+          </button>
+
+          <button
+            class="preset"
+            data-stake="25"
+          >
+            $25
+          </button>
+
+          <button
+            class="preset"
+            data-stake="50"
+          >
+            $50
+          </button>
+
+        </div>
+
+      </div>
+
+
+      <div
+        class="control-title"
+        style="margin-top:12px;"
+      >
+        RISK PROFILE
+      </div>
+
+
+      <div class="risk-row">
+
+        <button
+          class="risk active"
+          data-risk="safe"
+        >
+          SAFE
+        </button>
+
+        <button
+          class="risk"
+          data-risk="risk"
+        >
+          RISK
+        </button>
+
+        <button
+          class="risk"
+          data-risk="extreme"
+        >
+          EXTREME
+        </button>
+
+      </div>
+
+    </div>
+
+
+    <div class="control-panel">
+
+      <div class="control-title">
+        AUTO CASH OUT
+      </div>
+
+      <div class="auto-row">
+
+        <input
+          id="autoCash"
+          class="auto-input"
+          type="number"
+          min="1.01"
+          step=".01"
+          value="2.00"
+        >
+
+      </div>
+
+
+      <div
+        class="control-title"
+        style="margin-top:12px;"
+      >
+        CURRENT BET
+      </div>
+
+      <div
+        style="
+          color:#fff;
+          font-size:20px;
+          font-weight:900;
+        "
+        id="currentBet"
+      >
+        $25
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- SIDEBAR -->
+
+<aside class="sidebar">
+
+  <div class="card side-card">
+
+    <div class="balance-label">
+      DEMO BALANCE
+    </div>
+
+    <div
+      class="balance"
+      id="balance"
+    >
+      $1,000.00
+    </div>
+
+
+    <div class="side-divider"></div>
+
+
+    <div class="stats">
+
+      <div class="stat">
+        <div class="stat-label">
+          ROUNDS
+        </div>
+        <div
+          class="stat-value"
+          id="rounds"
+        >
+          0
+        </div>
+      </div>
+
+
+      <div class="stat">
+        <div class="stat-label">
+          WINS
+        </div>
+        <div
+          class="stat-value"
+          id="wins"
+        >
+          0
+        </div>
+      </div>
+
+
+      <div class="stat">
+        <div class="stat-label">
+          LOSSES
+        </div>
+        <div
+          class="stat-value"
+          id="losses"
+        >
+          0
+        </div>
+      </div>
+
+
+      <div class="stat">
+        <div class="stat-label">
+          WIN RATE
+        </div>
+        <div
+          class="stat-value"
+          id="winRate"
+        >
+          0%
+        </div>
+      </div>
+
+
+      <div class="stat">
+        <div class="stat-label">
+          PROFIT
+        </div>
+        <div
+          class="stat-value"
+          id="profit"
+        >
+          $0
+        </div>
+      </div>
+
+
+      <div class="stat">
+        <div class="stat-label">
+          BEST
+        </div>
+        <div
+          class="stat-value"
+          id="best"
+        >
+          1.00×
+        </div>
+      </div>
+
+    </div>
+
+
+    <button
+      class="reset"
+      id="resetBtn"
+    >
+      RESET DEMO
+    </button>
+
+  </div>
+
+
+  <div class="card side-card">
+
+    <div class="history-title">
+
+      <span>
+        RECENT ROUNDS
+      </span>
+
+      <span>
+        LAST 10
+      </span>
+
+    </div>
+
+
+    <div
+      class="history"
+      id="history"
+    >
+
+      <div class="history-item mid">
+        1.00×
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <div class="card side-card">
+
+    <div
+      style="
+        font-size:11px;
+        font-weight:950;
+        letter-spacing:.12em;
+        margin-bottom:9px;
+      "
+    >
+      SAFEUP / DEMO
+    </div>
+
+
+    <div
+      style="
+        color:#71808a;
+        font-size:11px;
+        line-height:1.65;
+      "
+    >
+      Crash-game interface prototype.
+      All balances, rounds and winnings are virtual.
+      No real money, wallets or payments are connected.
+    </div>
+
+  </div>
+
+</aside>
+
+</main>
+
+
+<div class="footer-note">
+  SAFEUP DEMO • VIRTUAL CREDITS ONLY • FOR UI / GAME PROTOTYPE
+</div>
 
 </div>
 
@@ -1391,20 +1697,19 @@ button{
 <script>
 
 /* =========================================================
-   SAFEUP V3
-   DEMO CRASH ENGINE
+   SAFEUP V3.1
 ========================================================= */
 
 const STORAGE_KEY = "safeup_demo_v3";
 
 const defaultState = {
-  balance: 1000,
-  rounds: 0,
-  wins: 0,
-  losses: 0,
-  profit: 0,
-  best: 1,
-  history: []
+  balance:1000,
+  rounds:0,
+  wins:0,
+  losses:0,
+  profit:0,
+  best:1,
+  history:[]
 };
 
 let state = loadState();
@@ -1422,65 +1727,115 @@ let points = [];
 
 let risk = "safe";
 
-const multiplierEl = document.getElementById("multiplier");
-const vaultMessage = document.getElementById("vaultMessage");
-const vaultDoor = document.getElementById("vaultDoor");
-const vaultWrap = document.getElementById("vaultWrap");
 
-const statusEl = document.getElementById("status");
-const statusText = document.getElementById("statusText");
+/* ELEMENTS */
 
-const balanceEl = document.getElementById("balance");
-const roundsEl = document.getElementById("rounds");
-const winsEl = document.getElementById("wins");
-const lossesEl = document.getElementById("losses");
-const winRateEl = document.getElementById("winRate");
-const profitEl = document.getElementById("profit");
-const bestEl = document.getElementById("best");
-const historyEl = document.getElementById("history");
+const multiplierEl =
+  document.getElementById("multiplier");
 
-const stakeEl = document.getElementById("stake");
-const currentBetEl = document.getElementById("currentBet");
-const autoCashEl = document.getElementById("autoCash");
+const vaultMessage =
+  document.getElementById("vaultMessage");
 
-const startBtn = document.getElementById("startBtn");
-const cashoutBtn = document.getElementById("cashoutBtn");
+const vaultDoor =
+  document.getElementById("vaultDoor");
 
-const roundLabel = document.getElementById("roundLabel");
+const vaultWrap =
+  document.getElementById("vaultWrap");
 
-const canvas = document.getElementById("chart");
-const ctx = canvas.getContext("2d");
+const statusEl =
+  document.getElementById("status");
+
+const statusText =
+  document.getElementById("statusText");
+
+const balanceEl =
+  document.getElementById("balance");
+
+const topBalanceEl =
+  document.getElementById("topBalance");
+
+const roundsEl =
+  document.getElementById("rounds");
+
+const winsEl =
+  document.getElementById("wins");
+
+const lossesEl =
+  document.getElementById("losses");
+
+const winRateEl =
+  document.getElementById("winRate");
+
+const profitEl =
+  document.getElementById("profit");
+
+const bestEl =
+  document.getElementById("best");
+
+const historyEl =
+  document.getElementById("history");
+
+const stakeEl =
+  document.getElementById("stake");
+
+const currentBetEl =
+  document.getElementById("currentBet");
+
+const autoCashEl =
+  document.getElementById("autoCash");
+
+const startBtn =
+  document.getElementById("startBtn");
+
+const cashoutBtn =
+  document.getElementById("cashoutBtn");
+
+const roundLabel =
+  document.getElementById("roundLabel");
+
+const canvas =
+  document.getElementById("chart");
+
+const ctx =
+  canvas.getContext("2d");
 
 
-/* =========================================================
-   STORAGE
-========================================================= */
+/* STORAGE */
 
 function loadState(){
 
   try{
 
-    const oldV3 = localStorage.getItem(STORAGE_KEY);
+    const saved =
+      localStorage.getItem(STORAGE_KEY);
 
-    if(oldV3){
+    if(saved){
+
       return {
         ...defaultState,
-        ...JSON.parse(oldV3)
+        ...JSON.parse(saved)
       };
+
     }
 
-    const oldV2 = localStorage.getItem("safeup_demo");
+    const old =
+      localStorage.getItem("safeup_demo");
 
-    if(oldV2){
+    if(old){
+
       return {
         ...defaultState,
-        ...JSON.parse(oldV2)
+        ...JSON.parse(old)
       };
+
     }
 
   }catch(e){}
 
-  return {...defaultState};
+  return {
+    ...defaultState
+  };
+
 }
 
 
@@ -1494,14 +1849,13 @@ function saveState(){
 }
 
 
-/* =========================================================
-   UI
-========================================================= */
+/* UI */
 
 function updateUI(){
 
-  balanceEl.textContent =
-    "$" + state.balance.toLocaleString(
+  const formattedBalance =
+    "$" +
+    state.balance.toLocaleString(
       "en-US",
       {
         minimumFractionDigits:2,
@@ -1509,37 +1863,65 @@ function updateUI(){
       }
     );
 
-  roundsEl.textContent = state.rounds;
 
-  winsEl.textContent = state.wins;
+  balanceEl.textContent =
+    formattedBalance;
 
-  lossesEl.textContent = state.losses;
+  topBalanceEl.textContent =
+    formattedBalance;
 
-  const total = state.wins + state.losses;
+
+  roundsEl.textContent =
+    state.rounds;
+
+  winsEl.textContent =
+    state.wins;
+
+  lossesEl.textContent =
+    state.losses;
+
+
+  const total =
+    state.wins +
+    state.losses;
+
 
   winRateEl.textContent =
     total
-      ? Math.round(state.wins / total * 100) + "%"
+      ? Math.round(
+          state.wins / total * 100
+        ) + "%"
       : "0%";
+
 
   profitEl.textContent =
     (state.profit >= 0 ? "+" : "-") +
     "$" +
     Math.abs(state.profit).toFixed(2);
 
+
   bestEl.textContent =
     state.best.toFixed(2) + "×";
 
+
   currentBetEl.textContent =
-    "$" + Number(stakeEl.value || 0).toFixed(0);
+    "$" +
+    Number(
+      stakeEl.value || 0
+    ).toFixed(0);
+
 
   roundLabel.textContent =
     "ROUND #" +
-    String(roundNumber).padStart(3,"0");
+    String(
+      roundNumber
+    ).padStart(3,"0");
+
 
   renderHistory();
 
   saveState();
+
 }
 
 
@@ -1548,10 +1930,16 @@ function renderHistory(){
   if(!state.history.length){
 
     historyEl.innerHTML =
-      `<div class="history-item mid">1.00×</div>`;
+      `
+      <div class="history-item mid">
+        1.00×
+      </div>
+      `;
 
     return;
+
   }
+
 
   historyEl.innerHTML =
     state.history
@@ -1563,7 +1951,8 @@ function renderHistory(){
 
         if(value >= 3){
           cls = "high";
-        }else if(value >= 1.7){
+        }
+        else if(value >= 1.7){
           cls = "mid";
         }
 
@@ -1575,12 +1964,11 @@ function renderHistory(){
 
       })
       .join("");
+
 }
 
 
-/* =========================================================
-   VAULT
-========================================================= */
+/* VAULT */
 
 function resetVault(){
 
@@ -1598,7 +1986,8 @@ function resetVault(){
     "crash"
   );
 
-  multiplierEl.textContent = "1.00×";
+  multiplierEl.textContent =
+    "1.00×";
 
   vaultMessage.textContent =
     "VAULT READY";
@@ -1622,7 +2011,9 @@ function openVault(){
 
   void vaultDoor.offsetWidth;
 
-  vaultDoor.classList.add("open");
+  vaultDoor.classList.add(
+    "open"
+  );
 
   vaultMessage.textContent =
     "VAULT OPEN";
@@ -1632,22 +2023,34 @@ function openVault(){
 
 function crashVault(){
 
-  vaultWrap.classList.add("crashing");
+  vaultWrap.classList.add(
+    "crashing"
+  );
 
-  vaultDoor.classList.remove("open");
+  vaultDoor.classList.remove(
+    "open"
+  );
 
   void vaultDoor.offsetWidth;
 
-  vaultDoor.classList.add("crash-close");
+  vaultDoor.classList.add(
+    "crash-close"
+  );
 
-  multiplierEl.classList.add("crash");
+  multiplierEl.classList.add(
+    "crash"
+  );
 
   vaultMessage.textContent =
     "CRASH";
 
-  statusEl.classList.remove("live");
+  statusEl.classList.remove(
+    "live"
+  );
 
-  statusEl.classList.add("crashed");
+  statusEl.classList.add(
+    "crashed"
+  );
 
   statusText.textContent =
     "CRASHED";
@@ -1657,7 +2060,9 @@ function crashVault(){
 
 function cashoutVault(){
 
-  multiplierEl.classList.add("cashout");
+  multiplierEl.classList.add(
+    "cashout"
+  );
 
   vaultMessage.textContent =
     "WIN SECURED";
@@ -1665,54 +2070,55 @@ function cashoutVault(){
 }
 
 
-/* =========================================================
-   RISK
-========================================================= */
+/* RISK */
 
 function generateCrashPoint(){
 
   let min;
   let max;
 
+
   if(risk === "safe"){
 
     min = 1.25;
     max = 7;
 
-  }else if(risk === "risk"){
+  }
+  else if(risk === "risk"){
 
     min = 1.08;
     max = 15;
 
-  }else{
+  }
+  else{
 
     min = 1.01;
     max = 35;
 
   }
 
+
   const random =
     Math.random();
 
-  /*
-    Slightly weighted distribution.
-    This is only a local demo.
-  */
 
   const value =
     min +
-    Math.pow(random,1.65) *
-    (max-min);
+    Math.pow(
+      random,
+      1.65
+    ) *
+    (max - min);
+
 
   return Number(
     value.toFixed(2)
   );
+
 }
 
 
-/* =========================================================
-   ROUND
-========================================================= */
+/* ROUND */
 
 function startRound(){
 
@@ -1720,40 +2126,59 @@ function startRound(){
     return;
   }
 
+
   const stake =
     Number(stakeEl.value);
 
+
   if(!stake || stake <= 0){
-    alert("Enter a valid stake.");
+
+    alert(
+      "Enter a valid stake."
+    );
+
     return;
+
   }
+
 
   if(stake > state.balance){
 
-    alert("Not enough demo balance.");
+    alert(
+      "Not enough demo balance."
+    );
 
     return;
+
   }
+
 
   clearInterval(timer);
 
+
   running = true;
+
   crashed = false;
+
   cashedOut = false;
 
   multiplier = 1;
 
   points = [];
 
+
   crashPoint =
     generateCrashPoint();
+
 
   state.balance -= stake;
 
   state.rounds++;
 
+
   roundNumber =
     state.rounds + 1;
+
 
   statusEl.classList.remove(
     "crashed"
@@ -1766,30 +2191,38 @@ function startRound(){
   statusText.textContent =
     "LIVE";
 
+
   multiplierEl.classList.remove(
     "cashout",
     "crash"
   );
 
+
   multiplierEl.textContent =
     "1.00×";
 
+
   vaultMessage.textContent =
     "VAULT OPENING";
+
 
   vaultWrap.classList.remove(
     "crashing"
   );
 
+
   vaultDoor.classList.remove(
     "crash-close"
   );
 
+
   void vaultDoor.offsetWidth;
+
 
   vaultDoor.classList.add(
     "open"
   );
+
 
   startBtn.disabled = true;
 
@@ -1799,52 +2232,75 @@ function startRound(){
 
   autoCashEl.disabled = true;
 
+
   document
     .querySelectorAll(".preset")
-    .forEach(btn => btn.disabled = true);
+    .forEach(
+      btn => btn.disabled = true
+    );
+
 
   document
     .querySelectorAll(".risk")
-    .forEach(btn => btn.disabled = true);
+    .forEach(
+      btn => btn.disabled = true
+    );
+
 
   updateUI();
 
-  let startedAt =
+
+  const startedAt =
     performance.now();
+
 
   timer =
     setInterval(() => {
 
       const elapsed =
-        (performance.now() - startedAt) / 1000;
+        (
+          performance.now() -
+          startedAt
+        ) / 1000;
 
-      /*
-        Smooth exponential growth.
-      */
-
-      multiplier =
-        Math.exp(elapsed * 0.105);
 
       multiplier =
-        Number(multiplier.toFixed(2));
+        Math.exp(
+          elapsed * .105
+        );
+
+
+      multiplier =
+        Number(
+          multiplier.toFixed(2)
+        );
+
 
       if(multiplier < 1){
         multiplier = 1;
       }
 
-      points.push(multiplier);
+
+      points.push(
+        multiplier
+      );
+
 
       if(points.length > 100){
         points.shift();
       }
 
+
       multiplierEl.textContent =
         multiplier.toFixed(2) + "×";
 
+
       drawChart();
+
 
       const auto =
         Number(autoCashEl.value);
+
 
       if(
         auto > 1 &&
@@ -1857,6 +2313,7 @@ function startRound(){
         return;
 
       }
+
 
       if(
         multiplier >= crashPoint
@@ -1871,6 +2328,8 @@ function startRound(){
 }
 
 
+/* CASH OUT */
+
 function cashOut(){
 
   if(
@@ -1881,14 +2340,18 @@ function cashOut(){
     return;
   }
 
+
   const stake =
     Number(stakeEl.value);
+
 
   const payout =
     stake * multiplier;
 
+
   const profit =
     payout - stake;
+
 
   state.balance += payout;
 
@@ -1896,41 +2359,54 @@ function cashOut(){
 
   state.profit += profit;
 
+
   state.best =
     Math.max(
       state.best,
       multiplier
     );
 
+
   state.history.push(
     multiplier
   );
+
 
   cashedOut = true;
 
   running = false;
 
+
   clearInterval(timer);
+
 
   cashoutVault();
 
+
   cashoutBtn.disabled = true;
+
 
   statusEl.classList.remove(
     "live"
   );
 
+
   statusText.textContent =
     "CASHED OUT";
 
+
   startBtn.disabled = false;
 
+
   unlockControls();
+
 
   updateUI();
 
 }
 
+
+/* CRASH */
 
 function crashRound(){
 
@@ -1938,26 +2414,34 @@ function crashRound(){
     return;
   }
 
+
   clearInterval(timer);
+
 
   running = false;
 
   crashed = true;
 
+
   multiplier =
     crashPoint;
+
 
   multiplierEl.textContent =
     multiplier.toFixed(2) + "×";
 
+
   state.losses++;
+
 
   state.profit -=
     Number(stakeEl.value);
 
+
   state.history.push(
     multiplier
   );
+
 
   state.best =
     Math.max(
@@ -1965,17 +2449,18 @@ function crashRound(){
       multiplier
     );
 
+
   crashVault();
+
 
   cashoutBtn.disabled = true;
 
+
   unlockControls();
+
 
   updateUI();
 
-  /*
-    Let the vault animation finish.
-  */
 
   setTimeout(() => {
 
@@ -1987,8 +2472,7 @@ function crashRound(){
 
       unlockControls();
 
-      multiplier =
-        1;
+      multiplier = 1;
 
       points = [];
 
@@ -2003,9 +2487,7 @@ function crashRound(){
 }
 
 
-/* =========================================================
-   CONTROLS
-========================================================= */
+/* CONTROLS */
 
 function unlockControls(){
 
@@ -2013,13 +2495,20 @@ function unlockControls(){
 
   autoCashEl.disabled = false;
 
+
   document
     .querySelectorAll(".preset")
-    .forEach(btn => btn.disabled = false);
+    .forEach(
+      btn => btn.disabled = false
+    );
+
 
   document
     .querySelectorAll(".risk")
-    .forEach(btn => btn.disabled = false);
+    .forEach(
+      btn => btn.disabled = false
+    );
+
 }
 
 
@@ -2054,13 +2543,21 @@ document
           return;
         }
 
+
         document
           .querySelectorAll(".risk")
-          .forEach(x =>
-            x.classList.remove("active")
+          .forEach(
+            x =>
+              x.classList.remove(
+                "active"
+              )
           );
 
-        btn.classList.add("active");
+
+        btn.classList.add(
+          "active"
+        );
+
 
         risk =
           btn.dataset.risk;
@@ -2076,10 +2573,12 @@ stakeEl.addEventListener(
   updateUI
 );
 
+
 startBtn.addEventListener(
   "click",
   startRound
 );
+
 
 cashoutBtn.addEventListener(
   "click",
@@ -2087,9 +2586,7 @@ cashoutBtn.addEventListener(
 );
 
 
-/* =========================================================
-   RESET
-========================================================= */
+/* RESET */
 
 document
   .getElementById("resetBtn")
@@ -2098,13 +2595,13 @@ document
     () => {
 
       if(running){
-
         clearInterval(timer);
-
       }
+
 
       state =
         {...defaultState};
+
 
       running = false;
 
@@ -2118,17 +2615,22 @@ document
 
       roundNumber = 1;
 
+
       localStorage.removeItem(
         STORAGE_KEY
       );
 
+
       resetVault();
+
 
       startBtn.disabled = false;
 
       cashoutBtn.disabled = true;
 
+
       unlockControls();
+
 
       updateUI();
 
@@ -2138,23 +2640,25 @@ document
   );
 
 
-/* =========================================================
-   CANVAS GRAPH
-========================================================= */
+/* CANVAS */
 
 function resizeCanvas(){
 
   const rect =
     canvas.getBoundingClientRect();
 
+
   const dpr =
     window.devicePixelRatio || 1;
+
 
   canvas.width =
     rect.width * dpr;
 
+
   canvas.height =
     rect.height * dpr;
+
 
   ctx.setTransform(
     dpr,
@@ -2164,6 +2668,7 @@ function resizeCanvas(){
     0,
     0
   );
+
 
   drawChart();
 
@@ -2175,11 +2680,14 @@ function drawChart(){
   const rect =
     canvas.getBoundingClientRect();
 
+
   const w =
     rect.width;
 
+
   const h =
     rect.height;
+
 
   ctx.clearRect(
     0,
@@ -2188,9 +2696,11 @@ function drawChart(){
     h
   );
 
+
   if(points.length < 2){
     return;
   }
+
 
   const max =
     Math.max(
@@ -2198,14 +2708,12 @@ function drawChart(){
       ...points
     );
 
-  const min =
-    1;
 
-  const padX =
-    5;
+  const min = 1;
 
-  const padY =
-    8;
+  const padX = 5;
+
+  const padY = 8;
 
   const usableW =
     w - padX * 2;
@@ -2213,18 +2721,24 @@ function drawChart(){
   const usableH =
     h - padY * 2;
 
+
   const coords =
     points.map(
       (value,index) => {
 
         const x =
           padX +
-          (index / (points.length-1)) *
+          (
+            index /
+            (points.length - 1)
+          ) *
           usableW;
 
+
         const normalized =
-          (value-min) /
-          (max-min);
+          (value - min) /
+          (max - min);
+
 
         const y =
           h -
@@ -2232,26 +2746,37 @@ function drawChart(){
           normalized *
           usableH;
 
+
         return {x,y};
 
       }
     );
 
-  /* glow */
+
+  /* GLOW */
 
   ctx.beginPath();
+
 
   coords.forEach(
     (p,i) => {
 
       if(i === 0){
-        ctx.moveTo(p.x,p.y);
-      }else{
-        ctx.lineTo(p.x,p.y);
+        ctx.moveTo(
+          p.x,
+          p.y
+        );
+      }
+      else{
+        ctx.lineTo(
+          p.x,
+          p.y
+        );
       }
 
     }
   );
+
 
   ctx.strokeStyle =
     "rgba(57,220,255,.18)";
@@ -2264,21 +2789,31 @@ function drawChart(){
 
   ctx.stroke();
 
-  /* line */
+
+  /* LINE */
 
   ctx.beginPath();
+
 
   coords.forEach(
     (p,i) => {
 
       if(i === 0){
-        ctx.moveTo(p.x,p.y);
-      }else{
-        ctx.lineTo(p.x,p.y);
+        ctx.moveTo(
+          p.x,
+          p.y
+        );
+      }
+      else{
+        ctx.lineTo(
+          p.x,
+          p.y
+        );
       }
 
     }
   );
+
 
   ctx.strokeStyle =
     crashed
@@ -2289,25 +2824,32 @@ function drawChart(){
 
   ctx.stroke();
 
-  /* current point */
+
+  /* CURRENT POINT */
 
   const last =
-    coords[coords.length-1];
+    coords[
+      coords.length - 1
+    ];
+
 
   ctx.beginPath();
+
 
   ctx.arc(
     last.x,
     last.y,
     4,
     0,
-    Math.PI*2
+    Math.PI * 2
   );
+
 
   ctx.fillStyle =
     crashed
       ? "#ff4f63"
       : "#39dcff";
+
 
   ctx.fill();
 
@@ -2320,9 +2862,7 @@ window.addEventListener(
 );
 
 
-/* =========================================================
-   INITIALIZE
-========================================================= */
+/* INITIAL */
 
 resetVault();
 
