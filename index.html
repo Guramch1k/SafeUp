@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>SAFEUP — Crash Game Demo</title>
+<style>
+*{box-sizing:border-box}body{margin:0;background:#07090c;color:#eef3f7;font-family:Inter,Arial,sans-serif}
+.wrap{max-width:1180px;margin:auto;padding:22px}
+header{display:flex;justify-content:space-between;align-items:center;margin-bottom:20px}
+.logo{font-weight:900;font-size:28px;letter-spacing:3px}.logo span{color:#ffd35a}
+.badge{font-size:11px;letter-spacing:1.5px;color:#8fa0ae;border:1px solid #26313a;border-radius:999px;padding:8px 12px}
+.grid{display:grid;grid-template-columns:1fr 330px;gap:18px}
+.card{background:linear-gradient(145deg,#10151a,#0b0e12);border:1px solid #202a32;border-radius:20px;box-shadow:0 18px 50px #0008}
+.main{padding:26px;min-height:650px}.side{padding:20px}
+.kicker{color:#82909b;font-size:11px;letter-spacing:2px}.round{float:right;color:#65737e;font-size:12px}
+.vault{height:390px;display:grid;place-items:center;position:relative;overflow:hidden}
+.vault:before{content:"";position:absolute;width:290px;height:290px;border:1px dashed #1d3945;border-radius:50%;animation:spin 18s linear infinite}
+.vault:after{content:"";position:absolute;width:220px;height:220px;border:2px solid #ffd35a33;border-radius:50%;box-shadow:0 0 70px #00e5ff18 inset}
+@keyframes spin{to{transform:rotate(360deg)}}
+.core{position:relative;z-index:2;text-align:center}.mult{font-size:76px;font-weight:900;letter-spacing:-4px;text-shadow:0 0 30px #00e5ff44}.status{font-size:11px;letter-spacing:2px;color:#7d8d99;margin-top:8px}
+.controls{display:grid;grid-template-columns:1fr 1fr;gap:12px}.field{background:#0a0d10;border:1px solid #202b33;border-radius:12px;padding:12px}.field label{display:block;font-size:10px;color:#71808b;letter-spacing:1.2px;margin-bottom:7px}
+input{width:100%;background:transparent;border:0;outline:0;color:white;font-size:17px}
+.presets{display:flex;gap:7px;margin-top:8px}.presets button,.risk button{flex:1;background:#11171c;color:#9ba8b1;border:1px solid #253039;border-radius:9px;padding:8px;cursor:pointer}
+.risk{display:flex;gap:7px}.risk button.active{border-color:#ffd35a;color:#ffd35a}
+.action{width:100%;margin-top:14px;border:0;border-radius:12px;padding:16px;font-weight:900;letter-spacing:1.5px;cursor:pointer;background:linear-gradient(90deg,#00d9ff,#ffd35a);color:#071014}
+.stats{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:14px}.stat{padding:13px;border:1px solid #202a32;border-radius:12px;background:#0b0f13}.stat small{display:block;color:#697783;font-size:10px;margin-bottom:5px}.stat b{font-size:16px}
+.feed{margin-top:18px}.feed h3{font-size:11px;letter-spacing:1.7px;color:#7e8d98}.log{font-size:12px;color:#8d9aa3;line-height:1.9;max-height:110px;overflow:auto}
+.notice{margin-top:16px;font-size:10px;line-height:1.5;color:#66747e;text-align:center}
+@media(max-width:800px){.grid{grid-template-columns:1fr}.main{min-height:auto}.vault{height:330px}.mult{font-size:62px}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header><div class="logo">SAFE<span>UP</span></div><div class="badge">DEMO • NO REAL MONEY</div></header>
+<div class="grid">
+<section class="card main">
+<div><span class="kicker">VAULT PROTOCOL 01</span><span class="round" id="round">ROUND #001</span></div>
+<div class="vault"><div class="core"><div class="mult" id="mult">1.00×</div><div class="status" id="status">READY TO START</div></div></div>
+<div class="controls">
+<div class="field"><label>STAKE</label><input id="stake" type="number" min="1" value="10"><div class="presets">
+<button onclick="setStake(1)">$1</button><button onclick="setStake(5)">$5</button><button onclick="setStake(10)">$10</button><button onclick="setStake(25)">$25</button><button onclick="setStake(50)">$50</button></div></div>
+<div class="field"><label>AUTO CASH OUT</label><input id="auto" type="number" step=".01" min="1.01" value="2.00"></div>
+</div>
+<div style="margin-top:12px"><div class="kicker" style="margin-bottom:8px">RISK LEVEL</div><div class="risk">
+<button class="active" data-risk="safe">SAFE</button><button data-risk="risk">RISK</button><button data-risk="extreme">EXTREME</button>
+</div></div>
+<button class="action" id="action">START ROUND</button>
+<div class="stats"><div class="stat"><small>DEMO BALANCE</small><b id="balance">$1,000.00</b></div><div class="stat"><small>LAST MULTIPLIER</small><b id="last">—</b></div></div>
+<div class="feed"><h3>LIVE VAULT FEED</h3><div class="log" id="log"></div></div>
+<div class="notice">Prototype only. Virtual demo credits have no monetary value. No payments, wallets or real-money wagering are implemented.</div>
+</section>
+<aside class="card side">
+<div class="kicker">SAFEUP / DEMO</div>
+<h2 style="margin:10px 0 6px">Crash-game prototype</h2>
+<p style="color:#7d8b95;font-size:13px;line-height:1.6">A premium vault-themed crash experience for product testing and presentation.</p>
+<hr style="border:0;border-top:1px solid #202a32;margin:20px 0">
+<div class="stat"><small>SELECTED LEVEL</small><b id="level">SAFE</b></div>
+<div class="stat" style="margin-top:10px"><small>STATUS</small><b id="sideStatus">READY</b></div>
+</aside>
+</div>
+</div>
+<script>
+let balance=1000, round=1, running=false, mult=1, target=0, timer=null, risk='safe';
+const ranges={safe:[1.05,12],risk:[1.02,30],extreme:[1.01,100]};
+const $=id=>document.getElementById(id);
+function money(n){return '$'+n.toFixed(2)}
+function setStake(v){$('stake').value=v}
+function log(t){$('log').innerHTML='<div>• '+t+'</div>'+ $('log').innerHTML}
+function pickTarget(){const [a,b]=ranges[risk];let x=a+Math.random()*(b-a);return Math.max(a,Math.min(b,Math.pow(x,1.7)))}
+document.querySelectorAll('.risk button').forEach(b=>b.onclick=()=>{if(running)return;document.querySelectorAll('.risk button').forEach(x=>x.classList.remove('active'));b.classList.add('active');risk=b.dataset.risk;$('level').textContent=risk.toUpperCase()});
+$('action').onclick=()=>running?cashout():start();
+function start(){
+ let stake=Number($('stake').value); if(stake<=0||stake>balance)return;
+ balance-=stake;running=true;mult=1;target=pickTarget();$('balance').textContent=money(balance);$('action').textContent='CASH OUT';$('status').textContent='VAULT OPEN';$('sideStatus').textContent='RUNNING';log('Round #'+String(round).padStart(3,'0')+' started • '+risk.toUpperCase());
+ timer=setInterval(()=>{mult*=1.008;$('mult').textContent=mult.toFixed(2)+'×';if(mult>=Number($('auto').value)){cashout()}else if(mult>=target){crash()}},45);
+}
+function cashout(){if(!running)return;clearInterval(timer);let stake=Number($('stake').value);let win=stake*mult;balance+=win;running=false;$('last').textContent=mult.toFixed(2)+'×';$('balance').textContent=money(balance);$('status').textContent='CASHED OUT';$('sideStatus').textContent='READY';$('action').textContent='START ROUND';log('Cashed out at '+mult.toFixed(2)+'× • +'+money(win));round++;$('round').textContent='ROUND #'+String(round).padStart(3,'0')}
+function crash(){clearInterval(timer);running=false;$('last').textContent=mult.toFixed(2)+'×';$('status').textContent='LOCKED / CRASHED';$('sideStatus').textContent='READY';$('action').textContent='START ROUND';log('Vault locked at '+mult.toFixed(2)+'×');round++;$('round').textContent='ROUND #'+String(round).padStart(3,'0')}
+</script>
+</body>
+</html>
